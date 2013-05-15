@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\SudokuGridViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,6 +70,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Grid\SudokuGrid.cs" />
     <Compile Include="Model\Grid\HandNote.cs" />
     <Compile Include="Model\Grid\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

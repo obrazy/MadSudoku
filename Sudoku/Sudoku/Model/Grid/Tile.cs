@@ -5,9 +5,13 @@ using System.Text;
 
 namespace Sudoku.Model.Grid
 {
-    class Tile
+    public class Tile
     {
-        public Boolean bIsSet { get; set; }
-        public Int32 Answer { get; set; }
+        #region Properties
+
+        public short CurrentValue { get; set; }
+        public short Answer { get; set; }
+
+        #endregion
     }
 }
