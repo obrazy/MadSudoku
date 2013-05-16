@@ -6,8 +6,9 @@ using System.ComponentModel;
 
 namespace Sudoku.ViewModel
 {
-    class SudokuGridViewModel : INotifyPropertyChanged
+    class TileViewModel : INotifyPropertyChanged
     {
+
         #region Properties
 
         // INotifyPropertyChanged related
@@ -34,7 +35,6 @@ namespace Sudoku.ViewModel
         }
 
         #endregion
-
 
     }
 }

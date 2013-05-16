@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Sudoku.Model.Grid;
 
 namespace Sudoku.Model
 {
     public class ModelFacade
     {
         #region Properties
+
+        // Singleton related properties
 
         private static ModelFacade _Instance;
 
@@ -23,11 +26,26 @@ namespace Sudoku.Model
             }
         }
 
+        // Game related properties
+
+        private SudokuGrid _GameGrid;
+
         #endregion
 
         #region Constructors
 
-        private ModelFacade() { }
+        private ModelFacade()
+        {
+        }
+
+        #endregion
+
+        #region Methods
+
+        public SudokuGrid CloneGameGrid()
+        {
+            return new SudokuGrid(this._GameGrid);
+        }
 
         #endregion
     }

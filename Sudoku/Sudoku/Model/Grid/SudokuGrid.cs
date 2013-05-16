@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Sudoku.Model;
 
 namespace Sudoku.Model.Grid
 {
@@ -11,7 +10,6 @@ namespace Sudoku.Model.Grid
         #region Properties
 
         public Tile[,] Tiles { get; set; }
-        public string Name { get; set; }
 
         #endregion
 
@@ -19,13 +17,26 @@ namespace Sudoku.Model.Grid
 
         public SudokuGrid()
         {
-            this.Tiles = new Tile[9,9];
-            foreach (Tile t in this.Tiles)
-            {
-                t.CurrentValue = 0;
-            }
-            this.Name = "yo";
+            this.Tiles = new Tile[9, 9];
         }
+
+        public SudokuGrid(SudokuGrid s)
+        {
+            this.Tiles = new Tile[9, 9];
+            for (int i = 0; i < 3; ++i)
+            {
+                for (int j = 0; j < 3; ++j)
+                {
+                    Tiles[i, j] = new Tile(s.Tiles[i, j]);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+
 
         #endregion
 

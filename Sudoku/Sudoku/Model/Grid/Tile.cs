@@ -13,5 +13,27 @@ namespace Sudoku.Model.Grid
         public short Answer { get; set; }
 
         #endregion
+
+        #region Constructors
+
+        public Tile()
+        {
+            this.CurrentValue = 0;
+            this.Answer = 0;
+        }
+
+        public Tile(Tile t)
+        {
+            this.CurrentValue = t.CurrentValue;
+            this.Answer = t.Answer;
+        }
+
+        #endregion
+
+        #region Methods
+
+
+
+        #endregion
     }
 }
