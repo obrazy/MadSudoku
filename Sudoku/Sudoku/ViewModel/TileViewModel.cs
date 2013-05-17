@@ -14,6 +14,10 @@ namespace Sudoku.ViewModel
         // INotifyPropertyChanged related
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // Tile properties
+        public short CurrentValue { get; set; }
+        public short Answer { get; set; }
+
         #endregion
 
         #region Constructors

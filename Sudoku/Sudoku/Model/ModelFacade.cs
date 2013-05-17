@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sudoku.Model.Grid;
+using Sudoku.Model.Solver;
+using Sudoku.Model.Generator;
 
 namespace Sudoku.Model
 {
@@ -28,7 +30,9 @@ namespace Sudoku.Model
 
         // Game related properties
 
-        private SudokuGrid _GameGrid;
+        public SudokuGrid GameGrid;
+        public SudokuSolver Solver;
+        public SudokuGenerator Generator;
 
         #endregion
 
@@ -36,6 +40,9 @@ namespace Sudoku.Model
 
         private ModelFacade()
         {
+            this.GameGrid = new SudokuGrid();
+            this.Solver = new SudokuSolver();
+            this.Generator = new SudokuGenerator();
         }
 
         #endregion
@@ -44,7 +51,7 @@ namespace Sudoku.Model
 
         public SudokuGrid CloneGameGrid()
         {
-            return new SudokuGrid(this._GameGrid);
+            return new SudokuGrid(this.GameGrid);
         }
 
         #endregion

@@ -9,8 +9,9 @@ namespace Sudoku.Model.Grid
     {
         #region Properties
 
-        public short CurrentValue { get; set; }
-        public short Answer { get; set; }
+        public Int16 CurrentValue { get; set; }
+        public Int16 Answer { get; set; }
+        public Boolean IsModifiable { get; set; }
 
         #endregion
 
@@ -20,12 +21,18 @@ namespace Sudoku.Model.Grid
         {
             this.CurrentValue = 0;
             this.Answer = 0;
+            this.IsModifiable = false;
         }
 
         public Tile(Tile t)
         {
             this.CurrentValue = t.CurrentValue;
             this.Answer = t.Answer;
+        }
+
+        public Tile(Int16 answer)
+        {
+
         }
 
         #endregion
