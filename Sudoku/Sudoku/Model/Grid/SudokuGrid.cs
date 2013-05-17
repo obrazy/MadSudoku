@@ -18,11 +18,6 @@ namespace Sudoku.Model.Grid
         public SudokuGrid()
         {
             this.Tiles = new Tile[9, 9];
-            foreach (Tile t in this.Tiles)
-            {
-                t.Answer = 0;
-                t.CurrentValue = 0;
-            }
         }
 
         public SudokuGrid(SudokuGrid s)

@@ -28,11 +28,7 @@ namespace Sudoku.Model.Grid
         {
             this.CurrentValue = t.CurrentValue;
             this.Answer = t.Answer;
-        }
-
-        public Tile(Int16 answer)
-        {
-
+            this.IsModifiable = t.IsModifiable;
         }
 
         #endregion
