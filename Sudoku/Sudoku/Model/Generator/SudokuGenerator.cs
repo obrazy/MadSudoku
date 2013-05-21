@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Sudoku.Model.Grid;
+using Sudoku.Enums;
 
 namespace Sudoku.Model.Generator
 {
@@ -15,7 +17,10 @@ namespace Sudoku.Model.Generator
 
         #region Methods
 
-        public 
+        public SudokuGrid GenerateNewPuzzle(GameDifficultyEnum diff)
+        {
+            return new SudokuGrid();
+        }
 
         #endregion
     }

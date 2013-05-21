@@ -5,6 +5,7 @@ using System.Text;
 using Sudoku.Model.Grid;
 using Sudoku.Model.Solver;
 using Sudoku.Model.Generator;
+using Sudoku.Enums;
 
 namespace Sudoku.Model
 {
@@ -30,7 +31,7 @@ namespace Sudoku.Model
 
         // Game related properties
 
-        public SudokuGrid GameGrid;
+        public SudokuGrid Puzzle { get; set; }
         public SudokuSolver Solver;
         public SudokuGenerator Generator;
 
@@ -40,7 +41,7 @@ namespace Sudoku.Model
 
         private ModelFacade()
         {
-            this.GameGrid = new SudokuGrid();
+            this.Puzzle = new SudokuGrid();
             this.Solver = new SudokuSolver();
             this.Generator = new SudokuGenerator();
         }
@@ -51,7 +52,12 @@ namespace Sudoku.Model
 
         public SudokuGrid CloneGameGrid()
         {
-            return new SudokuGrid(this.GameGrid);
+            return new SudokuGrid(this.Puzzle);
+        }
+
+        public void RequestNewPuzzle(GameDifficultyEnum diff)
+        {
+            this.Puzzle = this.Generator.GenerateNewPuzzle(diff);
         }
 
         #endregion

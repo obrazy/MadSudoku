@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\GameDifficultyEnum.cs" />
     <Compile Include="Model\Generator\SudokuGenerator.cs" />
     <Compile Include="Model\ModelFacade.cs" />
     <Compile Include="Model\Solver\SudokuSolver.cs" />
@@ -100,6 +101,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
