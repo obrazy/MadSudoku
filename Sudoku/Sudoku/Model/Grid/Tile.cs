@@ -12,6 +12,7 @@ namespace Sudoku.Model.Grid
         public Int16 CurrentValue { get; set; }
         public Int16 Answer { get; set; }
         public Boolean IsModifiable { get; set; }
+        public Boolean IsSet { get; set; }
 
         #endregion
 
@@ -21,6 +22,7 @@ namespace Sudoku.Model.Grid
         {
             this.CurrentValue = 0;
             this.Answer = 0;
+            this.IsModifiable = false;
             this.IsModifiable = false;
         }
 
