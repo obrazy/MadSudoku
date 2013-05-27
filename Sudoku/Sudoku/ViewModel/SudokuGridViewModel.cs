@@ -16,7 +16,7 @@ namespace Sudoku.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         // SudokuGrid properties
-        public TileViewModel[,] Tiles
+        public TileViewModel[][] Tiles
         {
             get;
             set;
@@ -28,12 +28,18 @@ namespace Sudoku.ViewModel
 
         public SudokuGridViewModel()
         {
-            Tiles = new TileViewModel[9, 9];
-            for (int i = 0; i < 3; ++i)
+            this.Tiles = new TileViewModel[9][];
+
+            for (Int16 i = 0; i < 9; ++i)
             {
-                for (int j = 0; j < 3; ++j)
+                this.Tiles[i] = new TileViewModel[9];
+            }
+
+            for (Int16 i = 0; i < 9; ++i)
+            {
+                for (Int16 j = 0; j < 9; ++j)
                 {
-                    this.Tiles[i, j] = new Tile(s.Tiles[i, j]);
+                    this.Tiles[i][j] = new TileViewModel(i, j);
                 }
             }
         }

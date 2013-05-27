@@ -60,6 +60,11 @@ namespace Sudoku.Model
             this.Puzzle = this.Generator.GenerateNewPuzzle(diff);
         }
 
+        public Tile CloneTile(Int16 row, Int16 col)
+        {
+            return this.Puzzle.Tiles[row][col];
+        }
+
         #endregion
     }
 }

@@ -11,28 +11,38 @@
             <Binding Source="StaticResource vm_grid"/>
         </Grid.DataContext>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <Label Grid.Row="0" Grid.Column="0" Content="{Binding Path=Name}"/>
+        <Button Grid.Row="0" Name="btnTempGenerate" Content="Generate" HorizontalAlignment="Center" Margin="5" Width="80" Height="35" Click="btnTempGenerate_Click"/>
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Margin="5" Content="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][0].CurrentValue}"/>
+            <Label Grid.Row="0" Grid.Column="1" Margin="5" Content="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][1].CurrentValue}"/>
+            <Label Grid.Row="0" Grid.Column="2" Margin="5" Content="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][2].CurrentValue}"/>
+            <Label Grid.Row="0" Grid.Column="3" Margin="5" Content="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][3].CurrentValue}"/>
+            <Label Grid.Row="0" Grid.Column="4" Margin="5" Content="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][4].CurrentValue}"/>
+        </Grid>        
     </Grid>
 </Window>

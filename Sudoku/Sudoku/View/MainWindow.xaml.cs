@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Sudoku.Model;
 
 namespace Sudoku
 {
@@ -22,6 +23,11 @@ namespace Sudoku
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnTempGenerate_Click(object sender, RoutedEventArgs e)
+        {
+            ModelFacade.Instance.RequestNewPuzzle(Enums.GameDifficultyEnum.EASY);
         }
     }
 }
