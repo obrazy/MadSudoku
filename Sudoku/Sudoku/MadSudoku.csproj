@@ -59,6 +59,7 @@
     <Compile Include="Model\Generator\SudokuGenerator.cs" />
     <Compile Include="Model\ModelFacade.cs" />
     <Compile Include="Model\Solver\SudokuSolver.cs" />
+    <Compile Include="Model\Util\Util.cs" />
     <Compile Include="ViewModel\SudokuGridViewModel.cs" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

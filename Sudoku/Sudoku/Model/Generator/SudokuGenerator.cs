@@ -19,7 +19,18 @@ namespace Sudoku.Model.Generator
 
         public SudokuGrid GenerateNewPuzzle(GameDifficultyEnum diff)
         {
-            return new SudokuGrid();
+            SudokuGrid newPuzzle = new SudokuGrid();
+
+
+
+            return newPuzzle;
+        }
+
+        private void GenerateAnswer(SudokuGrid newPuzzle)
+        {
+            // Fill each row house with candidates 1 through 9, positioned randomly
+
+            // Apply conflict minimization algorithm to rearrange grid to a final answer
         }
 
         #endregion
