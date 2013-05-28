@@ -59,13 +59,14 @@
     <Compile Include="Model\Generator\SudokuGenerator.cs" />
     <Compile Include="Model\ModelFacade.cs" />
     <Compile Include="Model\Solver\SudokuSolver.cs" />
-    <Compile Include="Model\Util\Util.cs" />
+    <Compile Include="Model\Util\SudokuUtil.cs" />
     <Compile Include="ViewModel\SudokuGridViewModel.cs" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="ViewModel\TileViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

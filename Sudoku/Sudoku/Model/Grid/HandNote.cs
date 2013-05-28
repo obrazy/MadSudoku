@@ -6,7 +6,7 @@ using System.Text;
 namespace Sudoku.Model.Grid
 {
     /// <summary>
-    /// Class responsible for representing the model of the hand notes in tiles.
+    /// Model class responsible for logic associated with the handnotes in the Sudoku puzzle.
     /// </summary>
     class HandNote
     {

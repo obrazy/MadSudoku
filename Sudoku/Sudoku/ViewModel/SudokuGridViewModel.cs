@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.ComponentModel;
 using Sudoku.Model.Grid;
 using Sudoku.Model;
 
 namespace Sudoku.ViewModel
 {
-    class SudokuGridViewModel : INotifyPropertyChanged
+    /// <summary>
+    /// View-model class associated with the SudokuGrid model class.
+    /// </summary>
+    class SudokuGridViewModel : ViewModelBase
     {
         #region Properties
 
-        // INotifyPropertyChanged related
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // SudokuGrid properties
+        /// <summary>
+        /// Array of arrays of TileVieModel for the presentation of the puzzle's tiles.
+        /// </summary>
         public TileViewModel[][] Tiles
         {
             get;
@@ -26,6 +27,9 @@ namespace Sudoku.ViewModel
 
         #region Constructors
 
+        /// <summary>
+        /// Base constructor that initiates the Tiles property.
+        /// </summary>
         public SudokuGridViewModel()
         {
             this.Tiles = new TileViewModel[9][];
@@ -47,19 +51,6 @@ namespace Sudoku.ViewModel
         #endregion
 
         #region Methods
-
-        // INotifyPropertyChanged related
-        private void NotifyPropertyChanged(string propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-
-        }
-
         #endregion
-
-
     }
 }

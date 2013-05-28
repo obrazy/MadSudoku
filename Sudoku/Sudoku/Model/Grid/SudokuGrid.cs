@@ -5,16 +5,25 @@ using System.Text;
 
 namespace Sudoku.Model.Grid
 {
+    /// <summary>
+    /// Model class responsible for logic associated with the Sudoku puzzle's grid.
+    /// </summary>
     public class SudokuGrid
     {
         #region Properties
 
+        /// <summary>
+        /// Array of arrays of TileVieModel for the representation of the puzzle's tiles.
+        /// </summary>
         public Tile[][] Tiles { get; set; }
 
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Base constructor that initiates the Tiles property.
+        /// </summary>
         public SudokuGrid()
         {
             this.Tiles = new Tile[9][];
@@ -33,6 +42,10 @@ namespace Sudoku.Model.Grid
             }
         }
 
+        /// <summary>
+        /// Constructs this SudokuGrid by performing a deep copy of another SudokuGrid. 
+        /// </summary>
+        /// <param name="s"></param>
         public SudokuGrid(SudokuGrid s)
         {
             this.Tiles = new Tile[9][];
@@ -54,10 +67,6 @@ namespace Sudoku.Model.Grid
         #endregion
 
         #region Methods
-
-
-
         #endregion
-
     }
 }
