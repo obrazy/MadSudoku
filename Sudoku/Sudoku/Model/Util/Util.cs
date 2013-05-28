@@ -6,7 +6,10 @@ using Sudoku.Model.Grid;
 
 namespace Sudoku.Model.Util
 {
-    class Util
+    /// <summary>
+    /// CLass containing various utility methods to assist the other modules.
+    /// </summary>
+    public class SudokuUtil
     {
         #region Properties
         #endregion
@@ -17,7 +20,7 @@ namespace Sudoku.Model.Util
         #region Methods
 
         /// <summary>
-        /// Gets a list containing the tiles that are part of the Specified Row House
+        /// Gets a list containing the tiles that are part of the specified Row House.
         /// </summary>
         /// <param name="rowNum"></param>
         /// <param name="s"></param>
@@ -30,7 +33,7 @@ namespace Sudoku.Model.Util
         }
 
         /// <summary>
-        /// Gets a list containing the tiles that are part of the specified Column House
+        /// Gets a list containing the tiles that are part of the specified Column House.
         /// </summary>
         /// <param name="colNum"></param>
         /// <param name="s"></param>
@@ -43,7 +46,7 @@ namespace Sudoku.Model.Util
         }
 
         /// <summary>
-        /// Gets a list containing the tiles that are part of the specified Square House
+        /// Gets a list containing the tiles that are part of the specified Square House.
         /// </summary>
         /// <param name="squareNum"></param>
         /// <param name="s"></param>

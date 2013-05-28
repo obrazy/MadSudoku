@@ -5,8 +5,10 @@ using System.Text;
 
 namespace Sudoku.Model.Grid
 {
+    /// <summary>
+    /// Class responsible for representing the model of the hand notes in tiles.
+    /// </summary>
     class HandNote
     {
-        public IList<Boolean> HandNotes;
     }
 }

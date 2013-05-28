@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Sudoku.Model.Solver
 {
+    /// <summary>
+    /// Class responsible for everything related to solving techniques.
+    /// </summary>
     public class SudokuSolver
     {
     }
