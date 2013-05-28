@@ -34,14 +34,14 @@ namespace Sudoku.ViewModel
         {
             this.Tiles = new TileViewModel[9][];
 
-            for (Int16 i = 0; i < 9; ++i)
+            for (int i = 0; i < 9; ++i)
             {
                 this.Tiles[i] = new TileViewModel[9];
             }
 
-            for (Int16 i = 0; i < 9; ++i)
+            for (int i = 0; i < 9; ++i)
             {
-                for (Int16 j = 0; j < 9; ++j)
+                for (int j = 0; j < 9; ++j)
                 {
                     this.Tiles[i][j] = new TileViewModel(i, j);
                 }

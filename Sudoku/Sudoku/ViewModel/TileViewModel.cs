@@ -17,22 +17,22 @@ namespace Sudoku.ViewModel
         /// <summary>
         /// The row of the tile.
         /// </summary>
-        public Int16 Row { get; set; }
+        public int Row { get; set; }
 
         /// <summary>
         /// The column of the tile.
         /// </summary>
-        public Int16 Col { get; set; }
+        public int Col { get; set; }
 
         /// <summary>
         /// The current value set by the user. Has a value of 0 if it is not set or if this tile is an answer tile.
         /// </summary>
-        public Int16 CurrentValue { get; set; }
+        public int CurrentValue { get; set; }
 
         /// <summary>
         /// The digit that goes in this tile in the current puzzle's solution.
         /// </summary>
-        public Int16 Answer { get; set; }
+        public int Answer { get; set; }
 
         /// <summary>
         /// Whether the user can change the value of this tile. In other words, whether this tile's value is part of the initial puzzle.
@@ -53,7 +53,7 @@ namespace Sudoku.ViewModel
         /// </summary>
         /// <param name="row"></param>
         /// <param name="col"></param>
-        public TileViewModel(Int16 row, Int16 col)
+        public TileViewModel(int row, int col)
             : this(ModelFacade.Instance.CloneTile(row, col))
         {
         }

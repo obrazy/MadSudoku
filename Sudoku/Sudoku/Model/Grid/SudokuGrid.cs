@@ -28,14 +28,14 @@ namespace Sudoku.Model.Grid
         {
             this.Tiles = new Tile[9][];
 
-            for (Int16 i = 0; i < 9; ++i)
+            for (int i = 0; i < 9; ++i)
             {
                 this.Tiles[i] = new Tile[9];
             }
 
-            for (Int16 i = 0; i < 9; ++i)
+            for (int i = 0; i < 9; ++i)
             {
-                for (Int16 j = 0; j < 9; ++j)
+                for (int j = 0; j < 9; ++j)
                 {
                     this.Tiles[i][j] = new Tile(i, j);
                 }
@@ -50,14 +50,14 @@ namespace Sudoku.Model.Grid
         {
             this.Tiles = new Tile[9][];
 
-            for (Int16 i = 0; i < 9; ++i)
+            for (int i = 0; i < 9; ++i)
             {
                 this.Tiles[i] = new Tile[9];
             }
 
-            for (Int16 i = 0; i < 9; ++i)
+            for (int i = 0; i < 9; ++i)
             {
-                for (Int16 j = 0; j < 9; ++j)
+                for (int j = 0; j < 9; ++j)
                 {
                     this.Tiles[i][j] = new Tile(s.Tiles[i][j]);
                 }

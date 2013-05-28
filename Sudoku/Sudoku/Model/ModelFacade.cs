@@ -99,7 +99,7 @@ namespace Sudoku.Model
         /// <param name="row"></param>
         /// <param name="col"></param>
         /// <returns></returns>
-        public Tile CloneTile(Int16 row, Int16 col)
+        public Tile CloneTile(int row, int col)
         {
             return this.Puzzle.Tiles[row][col];
         }
