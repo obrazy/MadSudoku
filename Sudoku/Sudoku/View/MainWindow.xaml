@@ -1,48 +1,655 @@
-﻿<Window x:Class="Sudoku.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:ns_vm_grid="clr-namespace:Sudoku.ViewModel"
-        Title="Mad Sudoku" Height="350" Width="525">
+﻿<Window
+    x:Class="Sudoku.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ns_vm_grid="clr-namespace:Sudoku.ViewModel"
+    Title="Mad Sudoku"
+    Height="350"
+    Width="525">
     <Window.Resources>
-        <ns_vm_grid:SudokuGridViewModel x:Key="vm_grid"/>
+        <ns_vm_grid:SudokuGridViewModel
+            x:Key="vm_grid" />
     </Window.Resources>
     <Grid>
         <Grid.DataContext>
-            <Binding Source="StaticResource vm_grid"/>
+            <Binding
+                Source="StaticResource vm_grid" />
         </Grid.DataContext>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="Auto" />
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Name="btnTempGenerate" Content="Generate" HorizontalAlignment="Center" Margin="5" Width="80" Height="35" Click="btnTempGenerate_Click"/>
-        <Grid Grid.Row="1" HorizontalAlignment="Stretch">
+        <Button
+            Grid.Row="0"
+            Name="btnTempGenerate"
+            Content="Generate"
+            HorizontalAlignment="Center"
+            Margin="5"
+            Width="80"
+            Height="35"
+            Click="btnTempGenerate_Click" />
+        <Grid
+            Grid.Row="1"
+            Name="gGameGrid"
+            HorizontalAlignment="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Margin="5" Content="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][0].CurrentValue}"/>
-            <Label Grid.Row="0" Grid.Column="1" Margin="5" Content="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][1].CurrentValue}"/>
-            <Label Grid.Row="0" Grid.Column="2" Margin="5" Content="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][2].CurrentValue}"/>
-            <Label Grid.Row="0" Grid.Column="3" Margin="5" Content="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][3].CurrentValue}"/>
-            <Label Grid.Row="0" Grid.Column="4" Margin="5" Content="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][4].CurrentValue}"/>
-        </Grid>        
+            <!--Row 1-->
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][0].CurrentValue}" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][1].CurrentValue}" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="2"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][2].CurrentValue}" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="3"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][3].CurrentValue}" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="4"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][4].CurrentValue}" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="5"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][5].CurrentValue}" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="6"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][6].CurrentValue}" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="7"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][7].CurrentValue}" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="8"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[0][8].CurrentValue}" />
+            <!--Row 2-->
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[1][0].CurrentValue}" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[1][1].CurrentValue}" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[1][2].CurrentValue}" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="3"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[1][3].CurrentValue}" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="4"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[1][4].CurrentValue}" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="5"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[1][5].CurrentValue}" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="6"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[1][6].CurrentValue}" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="7"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[1][7].CurrentValue}" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="8"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[1][8].CurrentValue}" />
+            <!--Row 3-->
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[2][0].CurrentValue}" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[2][1].CurrentValue}" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="2"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[2][2].CurrentValue}" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="3"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[2][3].CurrentValue}" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="4"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[2][4].CurrentValue}" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="5"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[2][5].CurrentValue}" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="6"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[2][6].CurrentValue}" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="7"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[2][7].CurrentValue}" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="8"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[2][8].CurrentValue}" />
+            <!--Row 4-->
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="0"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[3][0].CurrentValue}" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[3][1].CurrentValue}" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="2"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[3][2].CurrentValue}" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="3"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[3][3].CurrentValue}" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="4"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[3][4].CurrentValue}" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="5"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[3][5].CurrentValue}" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="6"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[3][6].CurrentValue}" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="7"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[3][7].CurrentValue}" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="8"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[3][8].CurrentValue}" />
+            <!--Row 5-->
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="0"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[4][0].CurrentValue}" />
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="1"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[4][1].CurrentValue}" />
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="2"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[4][2].CurrentValue}" />
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="3"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[4][3].CurrentValue}" />
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="4"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[4][4].CurrentValue}" />
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="5"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[4][5].CurrentValue}" />
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="6"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[4][6].CurrentValue}" />
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="7"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[4][7].CurrentValue}" />
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="8"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[4][8].CurrentValue}" />
+            <!--Row 6-->
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="0"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[5][0].CurrentValue}" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="1"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[5][1].CurrentValue}" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="2"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[5][2].CurrentValue}" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="3"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[5][3].CurrentValue}" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="4"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[5][4].CurrentValue}" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="5"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[5][5].CurrentValue}" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="6"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[5][6].CurrentValue}" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="7"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[5][7].CurrentValue}" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="8"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[5][8].CurrentValue}" />
+            <!--Row 7-->
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="0"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[6][0].CurrentValue}" />
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="1"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[6][1].CurrentValue}" />
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="2"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[6][2].CurrentValue}" />
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="3"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[6][3].CurrentValue}" />
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="4"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[6][4].CurrentValue}" />
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="5"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[6][5].CurrentValue}" />
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="6"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[6][6].CurrentValue}" />
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="7"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[6][7].CurrentValue}" />
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="8"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[6][8].CurrentValue}" />
+            <!--Row 8-->
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="0"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[7][0].CurrentValue}" />
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="1"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[7][1].CurrentValue}" />
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="2"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[7][2].CurrentValue}" />
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="3"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[7][3].CurrentValue}" />
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="4"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[7][4].CurrentValue}" />
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="5"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[7][5].CurrentValue}" />
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="6"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[7][6].CurrentValue}" />
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="7"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[7][7].CurrentValue}" />
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="8"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[7][8].CurrentValue}" />
+            <!--Row 9-->
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="0"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[8][0].CurrentValue}" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="1"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[8][1].CurrentValue}" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="2"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[8][2].CurrentValue}" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="3"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[8][3].CurrentValue}" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="4"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[8][4].CurrentValue}" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="5"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[8][5].CurrentValue}" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="6"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[8][6].CurrentValue}" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="7"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[8][7].CurrentValue}" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="8"
+                Margin="10,5,10,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Source={StaticResource vm_grid}, Path=Tiles[8][8].CurrentValue}" />
+        </Grid>
     </Grid>
 </Window>
