@@ -12,12 +12,6 @@ namespace Sudoku.ViewModel
     class ViewModelBase : INotifyPropertyChanged
     {
         #region Properties
-
-        /// <summary>
-        /// Event handler for the INotifyPropertyChanged interface.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
         #endregion
 
         #region Constructors
@@ -29,14 +23,20 @@ namespace Sudoku.ViewModel
         /// Notifies that a property has changed.
         /// </summary>
         /// <param name="propertyName"></param>
-        private void NotifyPropertyChanged(string propertyName = "")
+        public void NotifyPropertyChanged(string propertyName = "")
         {
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
-
         }
+
+        #endregion
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         #endregion
     }
 }

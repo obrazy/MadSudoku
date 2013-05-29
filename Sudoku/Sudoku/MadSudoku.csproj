@@ -60,7 +60,11 @@
     <Compile Include="Model\ModelFacade.cs" />
     <Compile Include="Model\Solver\SudokuSolver.cs" />
     <Compile Include="Model\Util\SudokuUtil.cs" />
+    <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\SudokuGridViewModel.cs" />
+    <Compile Include="View\SudokuGridControl.xaml.cs">
+      <DependentUpon>SudokuGridControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -75,6 +79,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\SudokuGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Grid\SudokuGrid.cs" />

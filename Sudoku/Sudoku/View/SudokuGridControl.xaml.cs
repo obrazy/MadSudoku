@@ -11,16 +11,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Sudoku.Model;
 
-namespace Sudoku
+namespace Sudoku.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SudokuGridControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SudokuGridControl : UserControl
     {
-        public MainWindow()
+        public SudokuGridControl()
         {
             InitializeComponent();
         }

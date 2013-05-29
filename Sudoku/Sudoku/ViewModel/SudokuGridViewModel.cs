@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Sudoku.Model.Grid;
 using Sudoku.Model;
+using System.Windows.Input;
+using Sudoku.Enums;
 
 namespace Sudoku.ViewModel
 {
@@ -23,12 +25,17 @@ namespace Sudoku.ViewModel
             set;
         }
 
+        /// <summary>
+        /// Command to reset the puzzle.
+        /// </summary>
+        public ICommand NewPuzzleCommand { get; set; }
+
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Base constructor that initiates the Tiles property.
+        /// Base constructor that initiates the properties and the commands.
         /// </summary>
         public SudokuGridViewModel()
         {
@@ -46,11 +53,25 @@ namespace Sudoku.ViewModel
                     this.Tiles[i][j] = new TileViewModel(i, j);
                 }
             }
+
+            // Commands
+            this.NewPuzzleCommand = new RelayCommand(new Action<object>(this.RequestNewPuzzle));
         }
 
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Action to perform when requesting a new puzzle.
+        /// </summary>
+        /// <param name="o"></param>
+        private void RequestNewPuzzle(object o)
+        {
+            ModelFacade.Instance.RequestNewPuzzle(GameDifficultyEnum.EASY);
+            this.NotifyPropertyChanged("Tiles");
+        }
+
         #endregion
     }
 }
