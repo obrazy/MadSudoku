@@ -52,11 +52,6 @@ namespace Sudoku.Model
         /// </summary>
         public SudokuGenerator Generator;
 
-        /// <summary>
-        /// Utility module.
-        /// </summary>
-        public SudokuUtil Util;
-
         #endregion
 
         #region Constructors
@@ -101,7 +96,7 @@ namespace Sudoku.Model
         /// <returns></returns>
         public Tile CloneTile(int row, int col)
         {
-            return this.Puzzle.Tiles[row][col];
+            return new Tile(this.Puzzle.Tiles[row][col]);
         }
 
         #endregion

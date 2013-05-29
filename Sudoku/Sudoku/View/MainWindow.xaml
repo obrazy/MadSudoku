@@ -5,8 +5,14 @@
     xmlns:ns_view="clr-namespace:Sudoku.View"
     Title="Mad Sudoku"
     Height="350"
-    Width="400">
-    <Grid>
+    Width="400"
+    xmlns:ns_vm_grid="clr-namespace:Sudoku.ViewModel">
+    <Window.Resources>
+        <ns_vm_grid:SudokuGridViewModel
+            x:Key="vm_grid" />
+    </Window.Resources>
+    <Grid
+        DataContext="{Binding Source={StaticResource vm_grid}}">
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="Auto" />
@@ -21,7 +27,7 @@
             Margin="5"
             Width="80"
             Height="35"
-            Command="{Binding Path=NewPuzzleCommand}" />
+            Command="{Binding NewPuzzleCommand}" />
         <ns_view:SudokuGridControl
             Grid.Row="1"
             HorizontalAlignment="Center"

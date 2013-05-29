@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Sudoku.Model.Grid;
 using Sudoku.Enums;
+using Sudoku.Model.Util;
 
 namespace Sudoku.Model.Generator
 {
@@ -13,9 +14,24 @@ namespace Sudoku.Model.Generator
     public class SudokuGenerator
     {
         #region Properties
+
+        /// <summary>
+        /// The random number generator used to generate the puzzle.
+        /// </summary>
+        private Random _RNG { get; set; }
+
         #endregion
 
         #region Constructors
+
+        /// <summary>
+        /// Base constructor.
+        /// </summary>
+        public SudokuGenerator()
+        {
+            this._RNG = new Random();
+        }
+
         #endregion
 
         #region Methods
@@ -29,6 +45,8 @@ namespace Sudoku.Model.Generator
         {
             SudokuGrid newPuzzle = new SudokuGrid();
 
+            GenerateAnswer(newPuzzle);
+
             return newPuzzle;
         }
 
@@ -38,7 +56,10 @@ namespace Sudoku.Model.Generator
         /// <param name="newPuzzle"></param>
         private void GenerateAnswer(SudokuGrid newPuzzle)
         {
-
+            foreach (Tile t in SudokuUtil.GetRowHouse(this._RNG.Next(0, 9), newPuzzle))
+            {
+                t.Answer = this._RNG.Next(1, 10);
+            }
         }
 
         #endregion

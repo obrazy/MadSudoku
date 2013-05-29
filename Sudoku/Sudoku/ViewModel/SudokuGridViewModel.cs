@@ -19,11 +19,7 @@ namespace Sudoku.ViewModel
         /// <summary>
         /// Array of arrays of TileVieModel for the presentation of the puzzle's tiles.
         /// </summary>
-        public TileViewModel[][] Tiles
-        {
-            get;
-            set;
-        }
+        public TileViewModel[][] Tiles { get; set; }
 
         /// <summary>
         /// Command to reset the puzzle.
@@ -46,13 +42,7 @@ namespace Sudoku.ViewModel
                 this.Tiles[i] = new TileViewModel[9];
             }
 
-            for (int i = 0; i < 9; ++i)
-            {
-                for (int j = 0; j < 9; ++j)
-                {
-                    this.Tiles[i][j] = new TileViewModel(i, j);
-                }
-            }
+            this.RefreshPuzzle();
 
             // Commands
             this.NewPuzzleCommand = new RelayCommand(new Action<object>(this.RequestNewPuzzle));
@@ -69,7 +59,22 @@ namespace Sudoku.ViewModel
         private void RequestNewPuzzle(object o)
         {
             ModelFacade.Instance.RequestNewPuzzle(GameDifficultyEnum.EASY);
+            this.RefreshPuzzle();
             this.NotifyPropertyChanged("Tiles");
+        }
+
+        /// <summary>
+        /// Rebuilds the Tiles property to synchronize the view-model with the model.
+        /// </summary>
+        private void RefreshPuzzle()
+        {
+            for (int i = 0; i < 9; ++i)
+            {
+                for (int j = 0; j < 9; ++j)
+                {
+                    this.Tiles[i][j] = new TileViewModel(i, j);
+                }
+            }
         }
 
         #endregion

@@ -25,7 +25,7 @@ namespace Sudoku.Model.Util
         /// <param name="rowNum"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public List<Tile> GetRowHouse(int rowNum, SudokuGrid s)
+        public static List<Tile> GetRowHouse(int rowNum, SudokuGrid s)
         {
             List<Tile> house = new List<Tile>();
 
@@ -43,7 +43,7 @@ namespace Sudoku.Model.Util
         /// <param name="colNum"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public List<Tile> GetColumnHouse(int colNum, SudokuGrid s)
+        public static List<Tile> GetColumnHouse(int colNum, SudokuGrid s)
         {
             List<Tile> house = new List<Tile>();
 
@@ -61,7 +61,7 @@ namespace Sudoku.Model.Util
         /// <param name="squareNum"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public List<Tile> GetSquareHouse(int squareNum, SudokuGrid s)
+        public static List<Tile> GetSquareHouse(int squareNum, SudokuGrid s)
         {
             // 1-2-3
             // 4-5-6
@@ -90,7 +90,7 @@ namespace Sudoku.Model.Util
         /// </summary>
         /// <param name="squareNum"></param>
         /// <returns></returns>
-        private int GetStartingRow(int squareNum)
+        private static int GetStartingRow(int squareNum)
         {
             switch (squareNum)
             {
@@ -114,7 +114,7 @@ namespace Sudoku.Model.Util
         /// </summary>
         /// <param name="squarNum"></param>
         /// <returns></returns>
-        private int GetStartingCol(int squareNum)
+        private static int GetStartingCol(int squareNum)
         {
             switch (squareNum)
             {
