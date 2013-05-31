@@ -20,7 +20,7 @@ namespace Sudoku.Model
         /// <summary>
         /// Private instance of this class for the Singleton pattern.
         /// </summary>
-        private static ModelFacade _Instance;
+        private static ModelFacade _instance;
 
         /// <summary>
         /// Property for access to the Singleton's instance.
@@ -29,11 +29,11 @@ namespace Sudoku.Model
         {
             get
             {
-                if (_Instance == null)
+                if (_instance == null)
                 {
-                    _Instance = new ModelFacade();
+                    _instance = new ModelFacade();
                 }
-                return _Instance;
+                return _instance;
             }
         }
 

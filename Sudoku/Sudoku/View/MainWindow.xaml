@@ -28,7 +28,7 @@
             Width="80"
             Height="35"
             Command="{Binding NewPuzzleCommand}" />
-        <ns_view:SudokuGridControl
+        <ns_view:SudokuGridView
             Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" />

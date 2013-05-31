@@ -18,7 +18,7 @@ namespace Sudoku.Model.Generator
         /// <summary>
         /// The random number generator used to generate the puzzle.
         /// </summary>
-        private Random _RNG { get; set; }
+        private Random _rng { get; set; }
 
         #endregion
 
@@ -29,7 +29,7 @@ namespace Sudoku.Model.Generator
         /// </summary>
         public SudokuGenerator()
         {
-            this._RNG = new Random();
+            this._rng = new Random();
         }
 
         #endregion
@@ -56,9 +56,9 @@ namespace Sudoku.Model.Generator
         /// <param name="newPuzzle"></param>
         private void GenerateAnswer(SudokuGrid newPuzzle)
         {
-            foreach (Tile t in SudokuUtil.GetRowHouse(this._RNG.Next(0, 9), newPuzzle))
+            foreach (Tile t in SudokuUtil.GetRowHouse(this._rng.Next(0, 9), newPuzzle))
             {
-                t.Answer = this._RNG.Next(1, 10);
+                t.Answer = this._rng.Next(1, 10);
             }
         }
 

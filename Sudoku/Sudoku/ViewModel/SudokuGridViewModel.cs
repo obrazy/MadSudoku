@@ -6,9 +6,12 @@ using Sudoku.Model.Grid;
 using Sudoku.Model;
 using System.Windows.Input;
 using Sudoku.Enums;
+using System.Collections.ObjectModel;
 
 namespace Sudoku.ViewModel
 {
+    //http://channel9.msdn.com/coding4fun/articles/Building-a-WPF-Sudoku-Game-Part-2-The-Board-UI-and-Validation
+
     /// <summary>
     /// View-model class associated with the SudokuGrid model class.
     /// </summary>
@@ -16,9 +19,15 @@ namespace Sudoku.ViewModel
     {
         #region Properties
 
-        /// <summary>
-        /// Array of arrays of TileVieModel for the presentation of the puzzle's tiles.
-        /// </summary>
+        private ObservableCollection<ObservableCollection<TileViewModel>> _rows;
+        public ObservableCollection<ObservableCollection<TileViewModel>> Rows
+        {
+            get
+            {
+                return this._rows;
+            }
+        }
+
         public TileViewModel[][] Tiles { get; set; }
 
         /// <summary>
@@ -31,18 +40,29 @@ namespace Sudoku.ViewModel
         #region Constructors
 
         /// <summary>
-        /// Base constructor that initiates the properties and the commands.
+        /// Base constructor.
         /// </summary>
         public SudokuGridViewModel()
         {
-            this.Tiles = new TileViewModel[9][];
-
+            _rows = new ObservableCollection<ObservableCollection<TileViewModel>>();
             for (int i = 0; i < 9; ++i)
             {
-                this.Tiles[i] = new TileViewModel[9];
+                ObservableCollection<TileViewModel> row = new ObservableCollection<TileViewModel>();
+                for (int j = 0; j < 9; ++j)
+                {
+                    TileViewModel tvm = new TileViewModel(i, j);
+                    row.Add(tvm);
+                }
             }
 
-            this.RefreshPuzzle();
+            //this.Tiles = new TileViewModel[9][];
+
+            //for (int i = 0; i < 9; ++i)
+            //{
+            //    this.Tiles[i] = new TileViewModel[9];
+            //}
+
+            //this.RefreshPuzzle();
 
             // Commands
             this.NewPuzzleCommand = new RelayCommand(new Action<object>(this.RequestNewPuzzle));
@@ -59,8 +79,8 @@ namespace Sudoku.ViewModel
         private void RequestNewPuzzle(object o)
         {
             ModelFacade.Instance.RequestNewPuzzle(GameDifficultyEnum.EASY);
-            this.RefreshPuzzle();
-            this.NotifyPropertyChanged("Tiles");
+            //this.RefreshPuzzle();
+            //this.NotifyPropertyChanged("Tiles");
         }
 
         /// <summary>

@@ -16,7 +16,7 @@ namespace Sudoku.ViewModel
         /// <summary>
         /// The Action to perform for this command.
         /// </summary>
-        private Action<Object> _Action;
+        private Action<Object> _action;
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace Sudoku.ViewModel
         /// <param name="action"></param>
         public RelayCommand(Action<Object> action)
         {
-            this._Action = action;
+            this._action = action;
         }
 
         #endregion
@@ -47,7 +47,7 @@ namespace Sudoku.ViewModel
 
         public void Execute(Object parameter)
         {
-            _Action(parameter);
+            _action(parameter);
         }
 
         #endregion

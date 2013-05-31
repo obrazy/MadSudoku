@@ -14,7 +14,7 @@ namespace Sudoku.ViewModel
     {
         #region Properties
 
-        private Tile _Tile { get; set; }
+        private Tile _tile { get; set; }
 
         /// <summary>
         /// The row of the tile.
@@ -23,7 +23,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return this._Tile.Row;
+                return this._tile.Row;
             }
         }
 
@@ -34,7 +34,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return this._Tile.Col;
+                return this._tile.Col;
             }
         }
 
@@ -45,11 +45,12 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return this._Tile.CurrentValue;
+                return this._tile.CurrentValue;
             }
             set
             {
-                this._Tile.CurrentValue = value;
+                this._tile.CurrentValue = value;
+                this.NotifyPropertyChanged("CurrentValue");
             }
         }
 
@@ -60,11 +61,12 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return this._Tile.Answer;
+                return this._tile.Answer;
             }
             set
             {
-                this._Tile.Answer = value;
+                this._tile.Answer = value;
+                this.NotifyPropertyChanged("Answer");
             }
         }
 
@@ -75,7 +77,7 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return this._Tile.IsModifiable;
+                return this._tile.IsModifiable;
             }
         }
 
@@ -86,11 +88,12 @@ namespace Sudoku.ViewModel
         {
             get
             {
-                return this._Tile.IsSet;
+                return this._tile.IsSet;
             }
             set
             {
-                this._Tile.IsSet = value;
+                this._tile.IsSet = value;
+                this.NotifyPropertyChanged("IsSet");
             }
         }
 
@@ -114,8 +117,8 @@ namespace Sudoku.ViewModel
         /// <param name="t"></param>
         public TileViewModel(Tile t)
         {
-            this._Tile = t;
-            this.NotifyPropertyChanged("Answer");
+            this._tile = t;
+
             //this.Row = t.Row;
             //this.Col = t.Col;
             //this.CurrentValue = t.CurrentValue;

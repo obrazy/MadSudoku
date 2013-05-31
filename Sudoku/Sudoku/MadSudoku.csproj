@@ -65,6 +65,9 @@
     <Compile Include="View\SudokuGridControl.xaml.cs">
       <DependentUpon>SudokuGridControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SudokuGridView.xaml.cs">
+      <DependentUpon>SudokuGridView.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -80,6 +83,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\SudokuGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SudokuGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
