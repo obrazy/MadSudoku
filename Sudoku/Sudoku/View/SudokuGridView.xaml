@@ -4,18 +4,80 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:ns_vm_grid="clr-namespace:Sudoku.ViewModel">
+    xmlns:ns_vm_grid="clr-namespace:Sudoku.ViewModel"
+    Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
     <UserControl.Resources>
         <ns_vm_grid:SudokuGridViewModel
             x:Key="vm_grid" />
+
+        <DataTemplate
+            x:Key="CellTemplate">
+            <Border
+                x:Name="Border"
+                BorderBrush="DimGray"
+                BorderThickness="1"
+                Background="#00112233">
+                <TextBlock
+                    Focusable="False"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    FontSize="16"
+                    Text="{Binding Path=Answer}" />
+            </Border>
+        </DataTemplate>
+
         <DataTemplate
             x:Key="RowTemplate">
-            <ItemsControl ItemsSource="{Binding}}" ItemTemplate=""
+            <ItemsControl
+                ItemsSource="{Binding}"
+                ItemTemplate="{DynamicResource CellTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid
+                            Rows="1" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </DataTemplate>
+
+
+        <DataTemplate
+            x:Key="RowListTemplate">
+            <ItemsControl
+                ItemsSource="{Binding}"
+                ItemTemplate="{DynamicResource CellTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid
+                            Rows="1" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+
     </UserControl.Resources>
-    <Grid>
+    <Grid
+        DataContext="{Binding Source={StaticResource vm_grid}}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+        <Button
+            Grid.Row="0"
+            Name="btnTempGenerate"
+            Content="Generate"
+            HorizontalAlignment="Center"
+            Margin="5"
+            Width="80"
+            Height="35"
+            Command="{Binding NewPuzzleCommand}" />
         <ItemsControl
-            ItemTemplate="{StaticResource RowTemplate}"
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            ItemTemplate="{DynamicResource RowListTemplate}"
             ItemsSource="{Binding Path=Rows}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>

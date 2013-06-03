@@ -19,6 +19,9 @@ namespace Sudoku.ViewModel
     {
         #region Properties
 
+        /// <summary>
+        /// The list of rows which are in turn lists of TileViewModel.
+        /// </summary>
         private ObservableCollection<ObservableCollection<TileViewModel>> _rows;
         public ObservableCollection<ObservableCollection<TileViewModel>> Rows
         {
@@ -27,8 +30,6 @@ namespace Sudoku.ViewModel
                 return this._rows;
             }
         }
-
-        public TileViewModel[][] Tiles { get; set; }
 
         /// <summary>
         /// Command to reset the puzzle.
@@ -53,16 +54,9 @@ namespace Sudoku.ViewModel
                     TileViewModel tvm = new TileViewModel(i, j);
                     row.Add(tvm);
                 }
+
+                _rows.Add(row);
             }
-
-            //this.Tiles = new TileViewModel[9][];
-
-            //for (int i = 0; i < 9; ++i)
-            //{
-            //    this.Tiles[i] = new TileViewModel[9];
-            //}
-
-            //this.RefreshPuzzle();
 
             // Commands
             this.NewPuzzleCommand = new RelayCommand(new Action<object>(this.RequestNewPuzzle));
@@ -78,9 +72,9 @@ namespace Sudoku.ViewModel
         /// <param name="o"></param>
         private void RequestNewPuzzle(object o)
         {
+            // TEMP Hardcoded to request a new Easy puzzle
             ModelFacade.Instance.RequestNewPuzzle(GameDifficultyEnum.EASY);
-            //this.RefreshPuzzle();
-            //this.NotifyPropertyChanged("Tiles");
+            this.RefreshPuzzle();
         }
 
         /// <summary>
@@ -92,7 +86,7 @@ namespace Sudoku.ViewModel
             {
                 for (int j = 0; j < 9; ++j)
                 {
-                    this.Tiles[i][j] = new TileViewModel(i, j);
+                    this.Rows[i][j] = new TileViewModel(i, j);
                 }
             }
         }

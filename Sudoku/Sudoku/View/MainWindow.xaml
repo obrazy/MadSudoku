@@ -11,23 +11,7 @@
         <ns_vm_grid:SudokuGridViewModel
             x:Key="vm_grid" />
     </Window.Resources>
-    <Grid
-        DataContext="{Binding Source={StaticResource vm_grid}}">
-        <Grid.RowDefinitions>
-            <RowDefinition
-                Height="Auto" />
-            <RowDefinition
-                Height="*" />
-        </Grid.RowDefinitions>
-        <Button
-            Grid.Row="0"
-            Name="btnTempGenerate"
-            Content="Generate"
-            HorizontalAlignment="Center"
-            Margin="5"
-            Width="80"
-            Height="35"
-            Command="{Binding NewPuzzleCommand}" />
+    <Grid>
         <ns_view:SudokuGridView
             Grid.Row="1"
             HorizontalAlignment="Center"
