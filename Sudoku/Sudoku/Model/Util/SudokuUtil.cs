@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sudoku.Model.Grid;
+using System.Collections.ObjectModel;
+using Sudoku.ViewModel;
 
 namespace Sudoku.Model.Util
 {
@@ -76,9 +78,39 @@ namespace Sudoku.Model.Util
 
             for (int curRow = rowStart; curRow < rowEnd; ++curRow)
             {
-                for (int curCol = colStart; curCol < colEnd; ++colEnd)
+                for (int curCol = colStart; curCol < colEnd; ++curCol)
                 {
                     house.Add(s.Tiles[curRow][curCol]);
+                }
+            }
+
+            return house;
+        }
+
+        /// <summary>
+        /// Gets a list containing the tiles that are part of the specified square  house.
+        /// </summary>
+        /// <param name="squareNum"></param>
+        /// <param name="rows"></param>
+        /// <returns></returns>
+        public static List<TileViewModel> GetSquareHouse(int squareNum, ObservableCollection<ObservableCollection<TileViewModel>> rows)
+        {
+            // 1-2-3
+            // 4-5-6
+            // 7-8-9
+
+            List<TileViewModel> house = new List<TileViewModel>();
+
+            int rowStart = GetStartingRow(squareNum);
+            int rowEnd = rowStart + 3;
+            int colStart = GetStartingCol(squareNum);
+            int colEnd = colStart + 3;
+
+            for (int curRow = rowStart; curRow < rowEnd; ++curRow)
+            {
+                for (int curCol = colStart; curCol < colEnd; ++curCol)
+                {
+                    house.Add(rows[curRow][curCol]);
                 }
             }
 

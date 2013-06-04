@@ -7,6 +7,7 @@ using Sudoku.Model;
 using System.Windows.Input;
 using Sudoku.Enums;
 using System.Collections.ObjectModel;
+using Sudoku.Model.Util;
 
 namespace Sudoku.ViewModel
 {
@@ -15,7 +16,7 @@ namespace Sudoku.ViewModel
     /// <summary>
     /// View-model class associated with the SudokuGrid model class.
     /// </summary>
-    class SudokuGridViewModel : ViewModelBase
+    public class SudokuGridViewModel : ViewModelBase
     {
         #region Properties
 
@@ -23,13 +24,27 @@ namespace Sudoku.ViewModel
         /// The list of rows which are in turn lists of TileViewModel.
         /// </summary>
         private ObservableCollection<ObservableCollection<TileViewModel>> _rows;
-        public ObservableCollection<ObservableCollection<TileViewModel>> Rows
+
+        /// <summary>
+        /// The list of the square houses, which are lists of TileViewModel.
+        /// </summary>
+        private ObservableCollection<ObservableCollection<TileViewModel>> _squareHouses;
+        public ObservableCollection<ObservableCollection<TileViewModel>> SquareHouses
         {
             get
             {
-                return this._rows;
+                if (this._squareHouses != null)
+                {
+                    return this._squareHouses;
+                }
+                else
+                {
+                    this._squareHouses = new ObservableCollection<ObservableCollection<TileViewModel>>();
+                    this.ConvertRowsToSquares();
+                    return this._squareHouses;
+                }
             }
-        }
+        }        
 
         /// <summary>
         /// Command to reset the puzzle.
@@ -45,7 +60,9 @@ namespace Sudoku.ViewModel
         /// </summary>
         public SudokuGridViewModel()
         {
-            _rows = new ObservableCollection<ObservableCollection<TileViewModel>>();
+            this._rows = new ObservableCollection<ObservableCollection<TileViewModel>>();
+
+            // Build the rows of the puzzle
             for (int i = 0; i < 9; ++i)
             {
                 ObservableCollection<TileViewModel> row = new ObservableCollection<TileViewModel>();
@@ -55,7 +72,7 @@ namespace Sudoku.ViewModel
                     row.Add(tvm);
                 }
 
-                _rows.Add(row);
+                this._rows.Add(row);
             }
 
             // Commands
@@ -75,6 +92,8 @@ namespace Sudoku.ViewModel
             // TEMP Hardcoded to request a new Easy puzzle
             ModelFacade.Instance.RequestNewPuzzle(GameDifficultyEnum.EASY);
             this.RefreshPuzzle();
+            this._squareHouses = null;
+            this.NotifyPropertyChanged("SquareHouses");
         }
 
         /// <summary>
@@ -86,8 +105,20 @@ namespace Sudoku.ViewModel
             {
                 for (int j = 0; j < 9; ++j)
                 {
-                    this.Rows[i][j] = new TileViewModel(i, j);
+                    this._rows[i][j] = new TileViewModel(i, j);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Using the _rows property, populate the _squareHouses property to use lists of square houses
+        /// instead of lists of rows.
+        /// </summary>
+        private void ConvertRowsToSquares()
+        {
+            for (int i = 1; i < 10; ++i)
+            {
+                this._squareHouses.Add(new ObservableCollection<TileViewModel>(SudokuUtil.GetSquareHouse(i, _rows)));
             }
         }
 

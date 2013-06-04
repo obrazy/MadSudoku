@@ -9,7 +9,7 @@ namespace Sudoku.ViewModel
     /// <summary>
     /// Base class for the view-model classes to derive from.
     /// </summary>
-    class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         #region Properties
         #endregion

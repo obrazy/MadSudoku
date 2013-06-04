@@ -10,7 +10,7 @@ namespace Sudoku.ViewModel
     /// <summary>
     /// View-model class associated with the Tile model class.
     /// </summary>
-    class TileViewModel : ViewModelBase
+    public class TileViewModel : ViewModelBase
     {
         #region Properties
 

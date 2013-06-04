@@ -9,53 +9,42 @@
     <UserControl.Resources>
         <ns_vm_grid:SudokuGridViewModel
             x:Key="vm_grid" />
-
         <DataTemplate
             x:Key="CellTemplate">
             <Border
                 x:Name="Border"
                 BorderBrush="DimGray"
                 BorderThickness="1"
-                Background="#00112233">
+                Background="GhostWhite">
                 <TextBlock
+                    Padding="5"
                     Focusable="False"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
+                    TextAlignment="Center"
                     FontWeight="Bold"
                     FontSize="16"
-                    Text="{Binding Path=Answer}" />
+                    Text="{Binding Path=Answer}"
+                    Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"/>
             </Border>
         </DataTemplate>
-
         <DataTemplate
-            x:Key="RowTemplate">
-            <ItemsControl
-                ItemsSource="{Binding}"
-                ItemTemplate="{DynamicResource CellTemplate}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid
-                            Rows="1" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
+            x:Key="SquareHouseTemplate">
+            <Border
+                BorderBrush="Black"
+                BorderThickness="1">
+                <ItemsControl
+                    ItemsSource="{Binding}"
+                    ItemTemplate="{DynamicResource CellTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid
+                                Columns="3" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Border>
         </DataTemplate>
-
-
-        <DataTemplate
-            x:Key="RowListTemplate">
-            <ItemsControl
-                ItemsSource="{Binding}"
-                ItemTemplate="{DynamicResource CellTemplate}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid
-                            Rows="1" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </DataTemplate>
-
     </UserControl.Resources>
     <Grid
         DataContext="{Binding Source={StaticResource vm_grid}}">
@@ -77,12 +66,12 @@
         <ItemsControl
             Grid.Row="1"
             HorizontalAlignment="Center"
-            ItemTemplate="{DynamicResource RowListTemplate}"
-            ItemsSource="{Binding Path=Rows}">
+            ItemTemplate="{DynamicResource SquareHouseTemplate}"
+            ItemsSource="{Binding Path=SquareHouses}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid
-                        Columns="1" />
+                        Columns="3" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
