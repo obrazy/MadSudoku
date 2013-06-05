@@ -15,9 +15,9 @@
                 x:Name="Border"
                 BorderBrush="DimGray"
                 BorderThickness="1"
-                Background="GhostWhite">
+                Background="Lavender">
                 <TextBlock
-                    Padding="5"
+                    Padding="8"
                     Focusable="False"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"

@@ -65,9 +65,9 @@ namespace Sudoku.Model.Util
         /// <returns></returns>
         public static List<Tile> GetSquareHouse(int squareNum, SudokuGrid s)
         {
-            // 1-2-3
-            // 4-5-6
-            // 7-8-9
+            // 0-1-2
+            // 3-4-5
+            // 6-7-8
 
             List<Tile> house = new List<Tile>();
 
@@ -95,9 +95,9 @@ namespace Sudoku.Model.Util
         /// <returns></returns>
         public static List<TileViewModel> GetSquareHouse(int squareNum, ObservableCollection<ObservableCollection<TileViewModel>> rows)
         {
-            // 1-2-3
-            // 4-5-6
-            // 7-8-9
+            // 0-1-2
+            // 3-4-5
+            // 6-7-8
 
             List<TileViewModel> house = new List<TileViewModel>();
 
@@ -126,14 +126,14 @@ namespace Sudoku.Model.Util
         {
             switch (squareNum)
             {
+                case 0:
                 case 1:
                 case 2:
-                case 3:
                     return 0;
 
+                case 3:
                 case 4:
                 case 5:
-                case 6:
                     return 3;
 
                 default:
@@ -150,14 +150,14 @@ namespace Sudoku.Model.Util
         {
             switch (squareNum)
             {
+                case 0:
+                case 3:
+                case 6:
+                    return 0;
+
                 case 1:
                 case 4:
                 case 7:
-                    return 0;
-
-                case 2:
-                case 5:
-                case 8:
                     return 3;
 
                 default:

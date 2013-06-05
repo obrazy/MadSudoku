@@ -45,7 +45,7 @@ namespace Sudoku.Model.Generator
         {
             SudokuGrid newPuzzle = new SudokuGrid();
 
-            GenerateAnswer(newPuzzle);
+            FillOneToNine(newPuzzle);
 
             return newPuzzle;
         }
@@ -54,11 +54,20 @@ namespace Sudoku.Model.Generator
         /// Fills each row of the Sudoku puzzle with digits 1 through 9, in a random order.
         /// </summary>
         /// <param name="newPuzzle"></param>
-        private void GenerateAnswer(SudokuGrid newPuzzle)
+        private void FillOneToNine(SudokuGrid newPuzzle)
         {
-            foreach (Tile t in SudokuUtil.GetRowHouse(this._rng.Next(0, 9), newPuzzle))
+            for (int i = 0; i < 9; ++i)
             {
-                t.Answer = this._rng.Next(1, 10);
+                IList<Tile> curRow = SudokuUtil.GetRowHouse(i, newPuzzle);
+
+                IList<int> digits = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+                for (int j = 0; j < 9; ++j)
+                {
+                    int nextDigit = this._rng.Next(digits.Count);
+                    curRow[j].Answer = digits[nextDigit];
+                    digits.RemoveAt(nextDigit);
+                }
+
             }
         }
 

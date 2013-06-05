@@ -11,8 +11,6 @@ using Sudoku.Model.Util;
 
 namespace Sudoku.ViewModel
 {
-    //http://channel9.msdn.com/coding4fun/articles/Building-a-WPF-Sudoku-Game-Part-2-The-Board-UI-and-Validation
-
     /// <summary>
     /// View-model class associated with the SudokuGrid model class.
     /// </summary>
@@ -116,7 +114,7 @@ namespace Sudoku.ViewModel
         /// </summary>
         private void ConvertRowsToSquares()
         {
-            for (int i = 1; i < 10; ++i)
+            for (int i = 0; i < 9; ++i)
             {
                 this._squareHouses.Add(new ObservableCollection<TileViewModel>(SudokuUtil.GetSquareHouse(i, _rows)));
             }

@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ns_view="clr-namespace:Sudoku.View"
     Title="Mad Sudoku"
-    Height="350"
-    Width="400"
+    Height="500"
+    Width="550"
     xmlns:ns_vm_grid="clr-namespace:Sudoku.ViewModel">
     <Window.Resources>
         <ns_vm_grid:SudokuGridViewModel
@@ -14,7 +14,8 @@
     <Grid>
         <ns_view:SudokuGridView
             Grid.Row="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center" />
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Margin="30"/>
     </Grid>
 </Window>
