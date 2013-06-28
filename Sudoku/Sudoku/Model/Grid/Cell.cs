@@ -6,39 +6,39 @@ using System.Text;
 namespace Sudoku.Model.Grid
 {
     /// <summary>
-    /// Model class responsible for logic associated with a tile in the Sudoku puzzle's grid.
+    /// Model class responsible for logic associated with a cell in the Sudoku puzzle's grid.
     /// </summary>
-    public class Tile
+    public class Cell
     {
         #region Properties
 
         /// <summary>
-        /// The row of the tile.
+        /// The row of the cell.
         /// </summary>
         public int Row { get; set; }
 
         /// <summary>
-        /// The column of the tile.
+        /// The column of the cell.
         /// </summary>
         public int Col { get; set; }
 
         /// <summary>
-        /// The current value set by the user. Has a value of 0 if it is not set or if this tile is an answer tile.
+        /// The current value set by the user. Has a value of 0 if it is not set or if this cell is an answer cell.
         /// </summary>
         public int CurrentValue { get; set; }
 
         /// <summary>
-        /// The digit that goes in this tile in the current puzzle's solution.
+        /// The digit that goes in this cell in the current puzzle's solution.
         /// </summary>
         public int Answer { get; set; }
 
         /// <summary>
-        /// Whether the user can change the value of this tile. In other words, whether this tile's value is part of the initial puzzle.
+        /// Whether the user can change the value of this cell. In other words, whether this cell's value is part of the initial puzzle.
         /// </summary>
         public Boolean IsModifiable { get; set; }
 
         /// <summary>
-        /// Whether the user has set a digit for this tile.
+        /// Whether the user has set a digit for this cell.
         /// </summary>
         public Boolean IsSet { get; set; }
 
@@ -49,7 +49,7 @@ namespace Sudoku.Model.Grid
         /// <summary>
         /// Base constructor that sets default values.
         /// </summary>
-        public Tile()
+        public Cell()
         {
             this.CurrentValue = 0;
             this.Answer = 0;
@@ -58,11 +58,11 @@ namespace Sudoku.Model.Grid
         }
 
         /// <summary>
-        /// Constructor that sets this Tile's Row and Column properties with specified values.
+        /// Constructor that sets this Cell's Row and Column properties with specified values.
         /// </summary>
         /// <param name="row"></param>
         /// <param name="col"></param>
-        public Tile(int row, int col)
+        public Cell(int row, int col)
         {
             this.Row = row;
             this.Col = col;
@@ -73,10 +73,10 @@ namespace Sudoku.Model.Grid
         }
 
         /// <summary>
-        /// Constructs this Tile by performing a deep copy of another Tile.
+        /// Constructs this Cell by performing a deep copy of another Cell.
         /// </summary>
         /// <param name="t"></param>
-        public Tile(Tile t)
+        public Cell(Cell t)
         {
             this.Row = t.Row;
             this.Col = t.Col;

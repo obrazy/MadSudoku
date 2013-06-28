@@ -89,14 +89,14 @@ namespace Sudoku.Model
         }
 
         /// <summary>
-        /// Returns a deep copy of the specified tile.
+        /// Returns a deep copy of the specified cell.
         /// </summary>
         /// <param name="row"></param>
         /// <param name="col"></param>
         /// <returns></returns>
-        public Tile CloneTile(int row, int col)
+        public Cell CloneCell(int row, int col)
         {
-            return new Tile(this.Puzzle.Tiles[row][col]);
+            return new Cell(this.Puzzle.Cells[row][col]);
         }
 
         #endregion

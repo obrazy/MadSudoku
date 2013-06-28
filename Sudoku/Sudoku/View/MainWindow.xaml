@@ -16,6 +16,6 @@
             Grid.Row="1"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
-            Margin="30"/>
+            Margin="30" />
     </Grid>
 </Window>

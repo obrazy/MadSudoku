@@ -69,7 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="ViewModel\TileViewModel.cs" />
+    <Compile Include="ViewModel\CellViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -87,7 +87,7 @@
   <ItemGroup>
     <Compile Include="Model\Grid\SudokuGrid.cs" />
     <Compile Include="Model\Grid\HandNote.cs" />
-    <Compile Include="Model\Grid\Tile.cs" />
+    <Compile Include="Model\Grid\Cell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

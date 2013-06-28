@@ -13,31 +13,31 @@ namespace Sudoku.Model.Grid
         #region Properties
 
         /// <summary>
-        /// Array of arrays of TileVieModel for the representation of the puzzle's tiles.
+        /// Array of arrays of CellViewModel for the representation of the puzzle's cells.
         /// </summary>
-        public Tile[][] Tiles { get; set; }
+        public Cell[][] Cells { get; set; }
 
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Base constructor that initiates the Tiles property.
+        /// Base constructor that initiates the Cells property.
         /// </summary>
         public SudokuGrid()
         {
-            this.Tiles = new Tile[9][];
+            this.Cells = new Cell[9][];
 
             for (int i = 0; i < 9; ++i)
             {
-                this.Tiles[i] = new Tile[9];
+                this.Cells[i] = new Cell[9];
             }
 
             for (int i = 0; i < 9; ++i)
             {
                 for (int j = 0; j < 9; ++j)
                 {
-                    this.Tiles[i][j] = new Tile(i, j);
+                    this.Cells[i][j] = new Cell(i, j);
                 }
             }
         }
@@ -48,18 +48,18 @@ namespace Sudoku.Model.Grid
         /// <param name="s"></param>
         public SudokuGrid(SudokuGrid s)
         {
-            this.Tiles = new Tile[9][];
+            this.Cells = new Cell[9][];
 
             for (int i = 0; i < 9; ++i)
             {
-                this.Tiles[i] = new Tile[9];
+                this.Cells[i] = new Cell[9];
             }
 
             for (int i = 0; i < 9; ++i)
             {
                 for (int j = 0; j < 9; ++j)
                 {
-                    this.Tiles[i][j] = new Tile(s.Tiles[i][j]);
+                    this.Cells[i][j] = new Cell(s.Cells[i][j]);
                 }
             }
         }

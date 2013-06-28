@@ -58,7 +58,7 @@ namespace Sudoku.Model.Generator
         {
             for (int i = 0; i < 9; ++i)
             {
-                IList<Tile> curRow = SudokuUtil.GetRowHouse(i, newPuzzle);
+                IList<Cell> curRow = SudokuUtil.GetRowHouse(i, newPuzzle);
 
                 IList<int> digits = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
                 for (int j = 0; j < 9; ++j)
@@ -67,8 +67,24 @@ namespace Sudoku.Model.Generator
                     curRow[j].Answer = digits[nextDigit];
                     digits.RemoveAt(nextDigit);
                 }
-
             }
+        }
+
+        /// <summary>
+        /// Minimizes conflicts in the grid passed as argument, resulting in a grid that is a
+        /// legal Sudoku solution.
+        /// </summary>
+        /// <param name="newPuzzle"></param>
+        private void MinConflicts(SudokuGrid newPuzzle)
+        {
+            // Evaluate initial number of conflicts for each cell
+            // Repeat while conflicts remain:
+            //  Select a random cell that has remaining conflicts
+            //  For each cell of the same row as the selected cell:
+            //      Simulate a swap between both cells
+            //      Calculate number of conflicts for those two cells after the swap
+            //      If the number of conflicts has diminished, save that cell and the total number of conflicts of those two cells
+            //  Select the swap that results in the least amount of conflicts and perform it (for ties, select randomly)
         }
 
         #endregion

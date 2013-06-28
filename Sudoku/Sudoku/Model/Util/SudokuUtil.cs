@@ -22,54 +22,54 @@ namespace Sudoku.Model.Util
         #region Methods
 
         /// <summary>
-        /// Gets a list containing the tiles that are part of the specified row house.
+        /// Gets a list containing the cells that are part of the specified row house.
         /// </summary>
         /// <param name="rowNum"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static List<Tile> GetRowHouse(int rowNum, SudokuGrid s)
+        public static List<Cell> GetRowHouse(int rowNum, SudokuGrid s)
         {
-            List<Tile> house = new List<Tile>();
+            List<Cell> house = new List<Cell>();
 
             for (int i = 0; i < 9; ++i)
             {
-                house.Add(s.Tiles[rowNum][i]);
+                house.Add(s.Cells[rowNum][i]);
             }
 
             return house;
         }
 
         /// <summary>
-        /// Gets a list containing the tiles that are part of the specified column house.
+        /// Gets a list containing the cells that are part of the specified column house.
         /// </summary>
         /// <param name="colNum"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static List<Tile> GetColumnHouse(int colNum, SudokuGrid s)
+        public static List<Cell> GetColumnHouse(int colNum, SudokuGrid s)
         {
-            List<Tile> house = new List<Tile>();
+            List<Cell> house = new List<Cell>();
 
             for (int i = 0; i < 9; ++i)
             {
-                house.Add(s.Tiles[i][colNum]);
+                house.Add(s.Cells[i][colNum]);
             }
 
             return house;
         }
 
         /// <summary>
-        /// Gets a list containing the tiles that are part of the specified square  house.
+        /// Gets a list containing the cells that are part of the specified square  house.
         /// </summary>
         /// <param name="squareNum"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static List<Tile> GetSquareHouse(int squareNum, SudokuGrid s)
+        public static List<Cell> GetSquareHouse(int squareNum, SudokuGrid s)
         {
             // 0-1-2
             // 3-4-5
             // 6-7-8
 
-            List<Tile> house = new List<Tile>();
+            List<Cell> house = new List<Cell>();
 
             int rowStart = GetStartingRow(squareNum);
             int rowEnd = rowStart + 3;
@@ -80,7 +80,7 @@ namespace Sudoku.Model.Util
             {
                 for (int curCol = colStart; curCol < colEnd; ++curCol)
                 {
-                    house.Add(s.Tiles[curRow][curCol]);
+                    house.Add(s.Cells[curRow][curCol]);
                 }
             }
 
@@ -88,18 +88,18 @@ namespace Sudoku.Model.Util
         }
 
         /// <summary>
-        /// Gets a list containing the tiles that are part of the specified square  house.
+        /// Gets a list containing the cells that are part of the specified square  house.
         /// </summary>
         /// <param name="squareNum"></param>
         /// <param name="rows"></param>
         /// <returns></returns>
-        public static List<TileViewModel> GetSquareHouse(int squareNum, ObservableCollection<ObservableCollection<TileViewModel>> rows)
+        public static List<CellViewModel> GetSquareHouse(int squareNum, ObservableCollection<ObservableCollection<CellViewModel>> rows)
         {
             // 0-1-2
             // 3-4-5
             // 6-7-8
 
-            List<TileViewModel> house = new List<TileViewModel>();
+            List<CellViewModel> house = new List<CellViewModel>();
 
             int rowStart = GetStartingRow(squareNum);
             int rowEnd = rowStart + 3;
@@ -118,7 +118,7 @@ namespace Sudoku.Model.Util
         }
 
         /// <summary>
-        /// Method that returns the starting row of a square house (the row of the top-left tile of the house).
+        /// Method that returns the starting row of a square house (the row of the top-left cell of the house).
         /// </summary>
         /// <param name="squareNum"></param>
         /// <returns></returns>
@@ -142,7 +142,7 @@ namespace Sudoku.Model.Util
         }
 
         /// <summary>
-        /// Method that returns the starting column of a square house (the column of the top-left tile of the house).
+        /// Method that returns the starting column of a square house (the column of the top-left cell of the house).
         /// </summary>
         /// <param name="squarNum"></param>
         /// <returns></returns>

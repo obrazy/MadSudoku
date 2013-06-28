@@ -19,15 +19,15 @@ namespace Sudoku.ViewModel
         #region Properties
 
         /// <summary>
-        /// The list of rows which are in turn lists of TileViewModel.
+        /// The list of rows which are in turn lists of CellViewModel.
         /// </summary>
-        private ObservableCollection<ObservableCollection<TileViewModel>> _rows;
+        private ObservableCollection<ObservableCollection<CellViewModel>> _rows;
 
         /// <summary>
-        /// The list of the square houses, which are lists of TileViewModel.
+        /// The list of the square houses, which are lists of CellViewModel.
         /// </summary>
-        private ObservableCollection<ObservableCollection<TileViewModel>> _squareHouses;
-        public ObservableCollection<ObservableCollection<TileViewModel>> SquareHouses
+        private ObservableCollection<ObservableCollection<CellViewModel>> _squareHouses;
+        public ObservableCollection<ObservableCollection<CellViewModel>> SquareHouses
         {
             get
             {
@@ -37,12 +37,12 @@ namespace Sudoku.ViewModel
                 }
                 else
                 {
-                    this._squareHouses = new ObservableCollection<ObservableCollection<TileViewModel>>();
+                    this._squareHouses = new ObservableCollection<ObservableCollection<CellViewModel>>();
                     this.ConvertRowsToSquares();
                     return this._squareHouses;
                 }
             }
-        }        
+        }
 
         /// <summary>
         /// Command to reset the puzzle.
@@ -58,15 +58,15 @@ namespace Sudoku.ViewModel
         /// </summary>
         public SudokuGridViewModel()
         {
-            this._rows = new ObservableCollection<ObservableCollection<TileViewModel>>();
+            this._rows = new ObservableCollection<ObservableCollection<CellViewModel>>();
 
             // Build the rows of the puzzle
             for (int i = 0; i < 9; ++i)
             {
-                ObservableCollection<TileViewModel> row = new ObservableCollection<TileViewModel>();
+                ObservableCollection<CellViewModel> row = new ObservableCollection<CellViewModel>();
                 for (int j = 0; j < 9; ++j)
                 {
-                    TileViewModel tvm = new TileViewModel(i, j);
+                    CellViewModel tvm = new CellViewModel(i, j);
                     row.Add(tvm);
                 }
 
@@ -95,7 +95,7 @@ namespace Sudoku.ViewModel
         }
 
         /// <summary>
-        /// Rebuilds the Tiles property to synchronize the view-model with the model.
+        /// Rebuilds the Cells property to synchronize the view-model with the model.
         /// </summary>
         private void RefreshPuzzle()
         {
@@ -103,7 +103,7 @@ namespace Sudoku.ViewModel
             {
                 for (int j = 0; j < 9; ++j)
                 {
-                    this._rows[i][j] = new TileViewModel(i, j);
+                    this._rows[i][j] = new CellViewModel(i, j);
                 }
             }
         }
@@ -116,7 +116,7 @@ namespace Sudoku.ViewModel
         {
             for (int i = 0; i < 9; ++i)
             {
-                this._squareHouses.Add(new ObservableCollection<TileViewModel>(SudokuUtil.GetSquareHouse(i, _rows)));
+                this._squareHouses.Add(new ObservableCollection<CellViewModel>(SudokuUtil.GetSquareHouse(i, _rows)));
             }
         }
 
