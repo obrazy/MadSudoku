@@ -67,6 +67,31 @@ namespace Sudoku.Model.Grid
         #endregion
 
         #region Methods
+
+        public override string ToString()
+        {
+            string toString = string.Empty;
+
+            for (int i = 0; i < 9; ++i)
+            {
+                if (i == 3 || i == 6)
+                {
+                    toString += "\n";
+                }
+
+                for (int j = 0; j < 9; ++j)
+                {
+                    if (j == 3 || j == 6)
+                    {
+                        toString += "  ";
+                    }
+                    toString += this.Cells[i][j].Answer;
+                }
+            }
+
+            return toString;
+        }
+
         #endregion
     }
 }
