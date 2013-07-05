@@ -59,7 +59,7 @@
     <Compile Include="Model\Generator\SudokuGenerator.cs" />
     <Compile Include="Model\ModelFacade.cs" />
     <Compile Include="Model\Solver\SudokuSolver.cs" />
-    <Compile Include="Model\Util\IntHashTableWithRandom.cs" />
+    <Compile Include="Model\Util\SudokuConflictsDataStructure.cs" />
     <Compile Include="Model\Util\SudokuUtil.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\SudokuGridViewModel.cs" />
