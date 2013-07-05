@@ -18,6 +18,11 @@ namespace Sudoku.ViewModel
         /// </summary>
         private Action<Object> _action;
 
+        /// <summary>
+        /// Predicated used to determine whether the action of this command can be executed or not.
+        /// </summary>
+        private Predicate<object> _canExecutePredicate;
+
         #endregion
 
         #region Constructors
@@ -26,9 +31,10 @@ namespace Sudoku.ViewModel
         /// Constructor that takes the Action to perform for this command as parameter.
         /// </summary>
         /// <param name="action"></param>
-        public RelayCommand(Action<Object> action)
+        public RelayCommand(Action<Object> action, Predicate<object> canExecPredicate)
         {
             this._action = action;
+            this._canExecutePredicate = canExecPredicate;
         }
 
         #endregion
@@ -38,11 +44,15 @@ namespace Sudoku.ViewModel
 
         #region ICommand Members
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
 
         public bool CanExecute(Object parameter)
         {
-            return true;
+            return this._canExecutePredicate == null ? true : this._canExecutePredicate.Invoke(parameter);
         }
 
         public void Execute(Object parameter)

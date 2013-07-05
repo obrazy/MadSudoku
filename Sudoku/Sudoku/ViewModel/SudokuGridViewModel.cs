@@ -74,7 +74,7 @@ namespace Sudoku.ViewModel
             }
 
             // Commands
-            this.NewPuzzleCommand = new RelayCommand(new Action<object>(this.RequestNewPuzzle));
+            this.NewPuzzleCommand = new RelayCommand(new Action<object>(this.RequestNewPuzzle), x => true);
         }
 
         #endregion

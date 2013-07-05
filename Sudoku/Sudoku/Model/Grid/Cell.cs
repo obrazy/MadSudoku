@@ -42,6 +42,11 @@ namespace Sudoku.Model.Grid
         /// </summary>
         public Boolean IsSet { get; set; }
 
+        /// <summary>
+        /// The number of conflicting visible cells seen by this cell.
+        /// </summary>
+        public int NumberOfConflicts { get; set; }
+
         #endregion
 
         #region Constructors

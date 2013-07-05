@@ -117,9 +117,10 @@ namespace Sudoku.Model.Generator
             //      Calculate differential in overall number of conflicts
             //      If differential is negative or zero, remember that swap and the number of conflicts
             //  Select the swap that has the smallest differential and perform it (for ties, select randomly)
+
             while (this._conflicts.Count > 0)
             {
-                //int currentCellKey = this._conflicts.Keys.to[this._rng.Next(this._conflicts.Count)];
+                int currentCellKey = this._conflicts.Keys.
             }
         }
 
