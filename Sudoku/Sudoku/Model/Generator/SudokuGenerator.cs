@@ -22,11 +22,9 @@ namespace Sudoku.Model.Generator
         private Random _rng { get; set; }
 
         /// <summary>
-        /// The data structure to keep track of which cells have how many conflicts. Because there will
-        /// always be 9 rows and 9 columns in the puzzle, the key used for a cell is the concatenation
-        /// of its row number and its column number, the concatenation result being used as an int.
+        /// The data structure to keep track of which cells have how many conflicts.
         /// </summary>
-        private Hashtable _conflicts;
+        private SudokuCellContainer _conflicts;
 
         #endregion
 
@@ -38,7 +36,7 @@ namespace Sudoku.Model.Generator
         public SudokuGenerator()
         {
             this._rng = new Random();
-            this._conflicts = new Hashtable();
+            this._conflicts = new SudokuCellContainer();
         }
 
         #endregion
@@ -94,10 +92,10 @@ namespace Sudoku.Model.Generator
                 {
                     int answer = newPuzzle.Cells[i][j].Answer;
                     int key = 10 * i + j;
-                    int nConflicts = SudokuUtil.GetVisibleCellsModified(i, j, newPuzzle).Count(c => c.Answer == answer) - 1;
+                    int nConflicts = SudokuUtil.GetVisibleCellsModified(i, j, newPuzzle).Count(c => c.Answer == answer);
                     if (nConflicts > 0)
                     {
-                        this._conflicts[key] = nConflicts;
+                        this._conflicts.Add(newPuzzle.Cells[i][j]);
                     }
                 }
             }
@@ -110,18 +108,67 @@ namespace Sudoku.Model.Generator
         /// <param name="newPuzzle"></param>
         private void MinConflicts(SudokuGrid newPuzzle)
         {
-            // Repeat while conflicts remain:
-            //  Select a random cell that has remaining conflicts
-            //  For each cell of the same row as the selected cell:
-            //      Simulate a swap between both cells
-            //      Calculate differential in overall number of conflicts
-            //      If differential is negative or zero, remember that swap and the number of conflicts
-            //  Select the swap that has the smallest differential and perform it (for ties, select randomly)
-
-            while (this._conflicts.Count > 0)
+            int nIterations = 0;
+            while (!this._conflicts.IsEmpty())
             {
-                int currentCellKey = this._conflicts.Keys.
+                Cell currCell = this._conflicts.GetRandomCell();
+
+                // Initialiser la structure de données pour conserver les scores
+                IList<Tuple<int, int>> scores = new List<Tuple<int, int>>();    // <swapPosition, numberOfConflicts>
+
+                // Évaluer la situation initiale pour la case sélectionnée et conserver le résultat
+                IList<Cell> currCellVisibleCells = SudokuUtil.GetVisibleCellsModified(currCell.Row, currCell.Col, newPuzzle);
+                int currCellInitialConflicts = currCellVisibleCells.Count(x => x.Answer == currCell.Answer);
+
+                foreach (Cell c in SudokuUtil.GetRowHouse(currCell.Row, newPuzzle))
+                {
+                    if (c.Row == currCell.Row && c.Col == currCell.Col)
+                    {
+                        continue;
+                    }
+
+                    // Évaluer la situation initiale pour la nouvelle case
+                    IList<Cell> newCellVisibleCells = SudokuUtil.GetVisibleCellsModified(c.Row, c.Col, newPuzzle);
+                    int newCellInitialConflicts = newCellVisibleCells.Count(x => x.Answer == c.Answer);
+
+                    // Évaluer la nouvelle situation pour la case choisie
+                    int currCellFinalConflicts = newCellVisibleCells.Count(x => x.Answer == currCell.Answer);
+
+                    // Évaluer la nouvelle situation pour la nouvelle case
+                    int newCellFinalConflicts = currCellVisibleCells.Count(x => x.Answer == c.Answer);
+
+                    // Si le score total de la nouvelle situation est meilleur ou égal au meilleur score actuel, ajuster la structure de données de scores
+                    if ((currCellFinalConflicts + newCellFinalConflicts) < (currCellInitialConflicts + newCellInitialConflicts))
+                    {
+                        if (scores.Count == 0 || (currCellFinalConflicts + newCellFinalConflicts) <= scores[0].Item2)
+                        {
+                            scores.Clear();
+                            scores.Add(Tuple.Create(c.Col, currCellFinalConflicts + newCellFinalConflicts));
+                        }
+                    }
+                }
+
+                if (scores.Count > 0)
+                {
+                    // Sélectionner au hasard une position d'échange parmi celles qui ont le meilleur score
+                    //*
+
+                    // Parmi les cases visibles depuis la position de la case choisie, décrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur
+                    // que la case choisie et incrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur que la nouvelle case; si les cases dont
+                    // le nombre de conflits a diminué ont maintenant 0 conflits, les retirer de la structure de données des conflits
+                    //*
+
+                    // Parmi les cases visibles depuis la position de la nouvelle case, décrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur
+                    // que la nouvelle case et incrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur que la case choisie; si les cases dont
+                    // le nombre de conflits a diminué ont maintenant 0 conflits, les retirer de la structure de données des conflits
+                    //*
+
+                    // Effectuer l'échange
+                    //*
+                }
             }
+
+            ++nIterations;
         }
 
         #endregion

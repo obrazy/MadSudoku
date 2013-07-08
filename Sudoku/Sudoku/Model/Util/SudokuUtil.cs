@@ -191,7 +191,7 @@ namespace Sudoku.Model.Util
 
         /// <summary>
         /// Gets a list of the cells that are visible to the cell at the location given by the row and col arguments,
-        /// excluding the cells within the same row house.
+        /// excluding the cells within the same row house and the given cell itself.
         /// </summary>
         /// <param name="row"></param>
         /// <param name="col"></param>
@@ -199,7 +199,14 @@ namespace Sudoku.Model.Util
         /// <returns></returns>
         public static IList<Cell> GetVisibleCellsModified(int row, int col, SudokuGrid s)
         {
-            IList<Cell> visibleCells = GetColumnHouse(col, s);
+            IList<Cell> visibleCells = new List<Cell>();
+            foreach (Cell c in GetColumnHouse(col, s))
+            {
+                if (c.Row != row)
+                {
+                    visibleCells.Add(c);
+                }
+            }
 
             foreach (Cell c in GetSquareHouse(row, col, s))
             {

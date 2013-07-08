@@ -11,7 +11,7 @@ namespace Sudoku.Model.Util
     /// Data structure class to contain objects of type Cell. Offers access, insert, delete and
     /// random operations in O(1) time.
     /// </summary>
-    public class SudokuConflictsDataStructure
+    public class SudokuCellContainer
     {
         #region Properties
 
@@ -40,7 +40,7 @@ namespace Sudoku.Model.Util
         /// <summary>
         /// Base constructor.
         /// </summary>
-        public SudokuConflictsDataStructure()
+        public SudokuCellContainer()
         {
             this._dict = new Dictionary<Tuple<int, int>, int>();
             this._list = new List<Cell>();
@@ -113,7 +113,7 @@ namespace Sudoku.Model.Util
         /// Gets a random entry from this data structure.
         /// </summary>
         /// <returns></returns>
-        public Cell GetRandomEntry()
+        public Cell GetRandomCell()
         {
             return this._list[this._rng.Next(this._list.Count)];
         }
