@@ -10,6 +10,12 @@ namespace Sudoku.Model.Grid
     /// </summary>
     public class SudokuGrid
     {
+        #region temp
+
+        public int NIterations { get; set; }
+
+        #endregion
+
         #region Properties
 
         /// <summary>

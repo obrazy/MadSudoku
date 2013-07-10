@@ -90,12 +90,11 @@ namespace Sudoku.Model.Generator
             {
                 for (int j = 0; j < 9; ++j)
                 {
-                    int answer = newPuzzle.Cells[i][j].Answer;
-                    int key = 10 * i + j;
-                    int nConflicts = SudokuUtil.GetVisibleCellsModified(i, j, newPuzzle).Count(c => c.Answer == answer);
-                    if (nConflicts > 0)
+                    Cell currCell = newPuzzle.Cells[i][j];
+                    currCell.NumberOfConflicts = SudokuUtil.GetVisibleCellsModified(i, j, newPuzzle).Count(c => c.Answer == currCell.Answer);
+                    if (currCell.NumberOfConflicts > 0)
                     {
-                        this._conflicts.Add(newPuzzle.Cells[i][j]);
+                        this._conflicts.Add(currCell);
                     }
                 }
             }
@@ -151,24 +150,61 @@ namespace Sudoku.Model.Generator
                 if (scores.Count > 0)
                 {
                     // Sélectionner au hasard une position d'échange parmi celles qui ont le meilleur score
-                    //*
+                    int swapIndex = scores[this._rng.Next(scores.Count)].Item1;
+                    Cell swapDestinationCell = newPuzzle.Cells[currCell.Row][swapIndex];
 
                     // Parmi les cases visibles depuis la position de la case choisie, décrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur
                     // que la case choisie et incrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur que la nouvelle case; si les cases dont
                     // le nombre de conflits a diminué ont maintenant 0 conflits, les retirer de la structure de données des conflits
-                    //*
+                    foreach (Cell c in currCellVisibleCells)
+                    {
+                        if (c.Answer == currCell.Answer)
+                        {
+                            --c.NumberOfConflicts;
+                            if (c.NumberOfConflicts == 0)
+                            {
+                                this._conflicts.Remove(c.Row, c.Col);
+                            }
+                        }
+                        else if (c.Answer == swapDestinationCell.Answer)
+                        {
+                            ++c.NumberOfConflicts;
+                            if (c.NumberOfConflicts == 1)
+                            {
+                                this._conflicts.Add(c);
+                            }
+                        }
+                    }
 
                     // Parmi les cases visibles depuis la position de la nouvelle case, décrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur
                     // que la nouvelle case et incrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur que la case choisie; si les cases dont
                     // le nombre de conflits a diminué ont maintenant 0 conflits, les retirer de la structure de données des conflits
-                    //*
+                    foreach (Cell c in SudokuUtil.GetVisibleCellsModified(swapDestinationCell.Row, swapDestinationCell.Col, newPuzzle))
+                    {
+                        if (c.Answer == swapDestinationCell.Answer)
+                        {
+                            --c.NumberOfConflicts;
+                            if (c.NumberOfConflicts == 0)
+                            {
+                                this._conflicts.Remove(c.Row, c.Col);
+                            }
+                        }
+                        else if (c.Answer == currCell.Answer)
+                        {
+                            ++c.NumberOfConflicts;
+                        }
+                    }
 
                     // Effectuer l'échange
-                    //*
+                    int temp = currCell.Answer;
+                    currCell.Answer = swapDestinationCell.Answer;
+                    swapDestinationCell.Answer = temp;
                 }
+
+                ++nIterations;
             }
 
-            ++nIterations;
+            newPuzzle.NIterations = nIterations;
         }
 
         #endregion

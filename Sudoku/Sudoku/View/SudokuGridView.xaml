@@ -53,6 +53,8 @@
                 Height="Auto" />
             <RowDefinition
                 Height="*" />
+            <RowDefinition
+                Height="Auto" />
         </Grid.RowDefinitions>
         <Button
             Grid.Row="0"
@@ -75,5 +77,10 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
+        <Label
+            Grid.Row="2"
+            Content="{Binding Path=NIterations}"
+            HorizontalAlignment="Center"
+            Margin="5" />
     </Grid>
 </UserControl>

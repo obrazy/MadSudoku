@@ -90,9 +90,18 @@ namespace Sudoku.Model.Util
                 }
                 else
                 {
-                    int removeIndex = this._dict[key];
-                    this._list[removeIndex] = this._list[this._list.Count - 1];
-                    this._list.RemoveAt(this._list.Count - 1);
+                    int removedIndex = this._dict[key];
+                    int lastListIndex = this._list.Count - 1;
+
+                    if (removedIndex != lastListIndex)
+                    {
+                        Cell movedCell = this._list[lastListIndex];
+                        this._list[removedIndex] = this._list[lastListIndex];
+                        var movedCellKey = Tuple.Create(movedCell.Row, movedCell.Col);
+                        this._dict[movedCellKey] = removedIndex;
+                    }
+
+                    this._list.RemoveAt(lastListIndex);
                     this._dict.Remove(key);
                 }
             }
