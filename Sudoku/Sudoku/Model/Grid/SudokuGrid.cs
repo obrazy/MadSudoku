@@ -74,6 +74,10 @@ namespace Sudoku.Model.Grid
 
         #region Methods
 
+        /// <summary>
+        /// Override of Object.ToString().
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string toString = string.Empty;
@@ -93,6 +97,7 @@ namespace Sudoku.Model.Grid
                     }
                     toString += this.Cells[i][j].Answer;
                 }
+                toString += "\n";
             }
 
             return toString;

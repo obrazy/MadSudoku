@@ -94,6 +94,14 @@ namespace Sudoku.Model.Grid
         #endregion
 
         #region Methods
+
+        public override string ToString()
+        {
+            string toString = "(" + this.Row + ", " + this.Col + ")  " + this.Answer + "  " + this.NumberOfConflicts;
+
+            return toString;
+        }
+
         #endregion
     }
 }

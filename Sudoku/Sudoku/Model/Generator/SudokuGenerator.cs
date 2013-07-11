@@ -112,12 +112,10 @@ namespace Sudoku.Model.Generator
             {
                 Cell currCell = this._conflicts.GetRandomCell();
 
-                // Initialiser la structure de données pour conserver les scores
                 IList<Tuple<int, int>> scores = new List<Tuple<int, int>>();    // <swapPosition, numberOfConflicts>
 
-                // Évaluer la situation initiale pour la case sélectionnée et conserver le résultat
                 IList<Cell> currCellVisibleCells = SudokuUtil.GetVisibleCellsModified(currCell.Row, currCell.Col, newPuzzle);
-                int currCellInitialConflicts = currCellVisibleCells.Count(x => x.Answer == currCell.Answer);
+                int currCellInitialConflicts = currCell.NumberOfConflicts;
 
                 foreach (Cell c in SudokuUtil.GetRowHouse(currCell.Row, newPuzzle))
                 {
@@ -126,17 +124,11 @@ namespace Sudoku.Model.Generator
                         continue;
                     }
 
-                    // Évaluer la situation initiale pour la nouvelle case
                     IList<Cell> newCellVisibleCells = SudokuUtil.GetVisibleCellsModified(c.Row, c.Col, newPuzzle);
-                    int newCellInitialConflicts = newCellVisibleCells.Count(x => x.Answer == c.Answer);
-
-                    // Évaluer la nouvelle situation pour la case choisie
+                    int newCellInitialConflicts = c.NumberOfConflicts;
                     int currCellFinalConflicts = newCellVisibleCells.Count(x => x.Answer == currCell.Answer);
-
-                    // Évaluer la nouvelle situation pour la nouvelle case
                     int newCellFinalConflicts = currCellVisibleCells.Count(x => x.Answer == c.Answer);
 
-                    // Si le score total de la nouvelle situation est meilleur ou égal au meilleur score actuel, ajuster la structure de données de scores
                     if ((currCellFinalConflicts + newCellFinalConflicts) < (currCellInitialConflicts + newCellInitialConflicts))
                     {
                         if (scores.Count == 0 || (currCellFinalConflicts + newCellFinalConflicts) <= scores[0].Item2)
@@ -149,13 +141,11 @@ namespace Sudoku.Model.Generator
 
                 if (scores.Count > 0)
                 {
-                    // Sélectionner au hasard une position d'échange parmi celles qui ont le meilleur score
                     int swapIndex = scores[this._rng.Next(scores.Count)].Item1;
                     Cell swapDestinationCell = newPuzzle.Cells[currCell.Row][swapIndex];
+                    int currCellNewConflicts = 0;
+                    int swapCellNewConflicts = 0;
 
-                    // Parmi les cases visibles depuis la position de la case choisie, décrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur
-                    // que la case choisie et incrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur que la nouvelle case; si les cases dont
-                    // le nombre de conflits a diminué ont maintenant 0 conflits, les retirer de la structure de données des conflits
                     foreach (Cell c in currCellVisibleCells)
                     {
                         if (c.Answer == currCell.Answer)
@@ -168,6 +158,7 @@ namespace Sudoku.Model.Generator
                         }
                         else if (c.Answer == swapDestinationCell.Answer)
                         {
+                            ++swapCellNewConflicts;
                             ++c.NumberOfConflicts;
                             if (c.NumberOfConflicts == 1)
                             {
@@ -176,10 +167,8 @@ namespace Sudoku.Model.Generator
                         }
                     }
 
-                    // Parmi les cases visibles depuis la position de la nouvelle case, décrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur
-                    // que la nouvelle case et incrémenter de 1 le nombre de conflits pour les cases qui ont la même valeur que la case choisie; si les cases dont
-                    // le nombre de conflits a diminué ont maintenant 0 conflits, les retirer de la structure de données des conflits
-                    foreach (Cell c in SudokuUtil.GetVisibleCellsModified(swapDestinationCell.Row, swapDestinationCell.Col, newPuzzle))
+                    IList<Cell> swapCellVisibleCells = SudokuUtil.GetVisibleCellsModified(swapDestinationCell.Row, swapDestinationCell.Col, newPuzzle);
+                    foreach (Cell c in swapCellVisibleCells)
                     {
                         if (c.Answer == swapDestinationCell.Answer)
                         {
@@ -191,14 +180,30 @@ namespace Sudoku.Model.Generator
                         }
                         else if (c.Answer == currCell.Answer)
                         {
+                            ++currCellNewConflicts;
                             ++c.NumberOfConflicts;
+                            if (c.NumberOfConflicts == 1)
+                            {
+                                this._conflicts.Add(c);
+                            }
                         }
                     }
 
-                    // Effectuer l'échange
                     int temp = currCell.Answer;
                     currCell.Answer = swapDestinationCell.Answer;
                     swapDestinationCell.Answer = temp;
+
+                    currCell.NumberOfConflicts = currCellNewConflicts;
+                    if (currCell.NumberOfConflicts == 0)
+                    {
+                        this._conflicts.Remove(currCell.Row, currCell.Col);
+                    }
+
+                    swapDestinationCell.NumberOfConflicts = swapCellNewConflicts;
+                    if (swapDestinationCell.NumberOfConflicts == 0)
+                    {
+                        this._conflicts.Remove(swapDestinationCell.Row, swapDestinationCell.Col);
+                    }
                 }
 
                 ++nIterations;
