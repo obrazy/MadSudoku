@@ -80,7 +80,7 @@ namespace Sudoku.Model.Grid
         /// <returns></returns>
         public override string ToString()
         {
-            string toString = string.Empty;
+            string toString = "   012  345  678\n\n";
 
             for (int i = 0; i < 9; ++i)
             {
@@ -88,6 +88,8 @@ namespace Sudoku.Model.Grid
                 {
                     toString += "\n";
                 }
+
+                toString += i + "  ";
 
                 for (int j = 0; j < 9; ++j)
                 {
