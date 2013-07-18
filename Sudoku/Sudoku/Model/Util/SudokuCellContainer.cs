@@ -136,6 +136,22 @@ namespace Sudoku.Model.Util
             return this._list.Count == 0;
         }
 
+        public bool Contains(Cell c)
+        {
+            var key = Tuple.Create(c.Row, c.Col);
+            bool dictContains = this._dict.ContainsKey(key);
+            bool listContains = this._list.Contains(c);
+
+            if (dictContains != listContains)
+            {
+                throw new Exception("ERROR SHIT");
+            }
+            else
+            {
+                return dictContains;
+            }            
+        }
+
         #endregion
     }
 }

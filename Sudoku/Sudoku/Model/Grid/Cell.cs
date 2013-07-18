@@ -97,7 +97,7 @@ namespace Sudoku.Model.Grid
 
         public override string ToString()
         {
-            string toString = "(" + this.Row + ", " + this.Col + ")  " + this.Answer + "  " + this.NumberOfConflicts;
+            string toString = "(" + this.Row + ", " + this.Col + ")  [" + this.Answer + "]  " + this.NumberOfConflicts;
 
             return toString;
         }
