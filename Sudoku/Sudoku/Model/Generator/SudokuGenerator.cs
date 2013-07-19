@@ -1,4 +1,4 @@
-﻿#define DEBUG
+﻿//#define DEBUG
 
 using System;
 using System.Collections.Generic;
@@ -150,7 +150,7 @@ namespace Sudoku.Model.Generator
                     int currCellFinalConflicts = newCellVisibleCells.Count(x => x.Answer == currCell.Answer);
                     int newCellFinalConflicts = currCellVisibleCells.Count(x => x.Answer == c.Answer);
 
-                    if ((currCellFinalConflicts + newCellFinalConflicts) < (currCellInitialConflicts + newCellInitialConflicts))    // Only consider the swap if the resulting total number of conflicts is strictly decreased
+                    if ((currCellFinalConflicts + newCellFinalConflicts) <= (currCellInitialConflicts + newCellInitialConflicts))
                     {
                         if (scores.Count == 0 || (currCellFinalConflicts + newCellFinalConflicts) <= scores[0].Item2)
                         {
@@ -190,13 +190,13 @@ namespace Sudoku.Model.Generator
                                 this._conflicts.Remove(c.Row, c.Col);
 
 #if DEBUG
-                                removedCells.Append("\t" + c + " " + this._conflicts.Contains(c).ToString() + "\n");
+                                removedCells.Append("\t" + c + "\n");
 #endif
                             }
                         }
                         else if (c.Answer == swapDestinationCell.Answer)
                         {
-                            ++swapCellNewConflicts;
+                            ++currCellNewConflicts;
                             ++c.NumberOfConflicts;
 
 #if DEBUG
@@ -208,7 +208,7 @@ namespace Sudoku.Model.Generator
                                 this._conflicts.Add(c);
 
 #if DEBUG
-                                insertedCells.Append("\t" + c + " " + this._conflicts.Contains(c).ToString() + "\n");
+                                insertedCells.Append("\t" + c + "\n");
 #endif
                             }
                         }
@@ -239,13 +239,13 @@ namespace Sudoku.Model.Generator
                                 this._conflicts.Remove(c.Row, c.Col);
 
 #if DEBUG
-                                removedCells.Append("\t" + c + " " + this._conflicts.Contains(c).ToString() + "\n");
+                                removedCells.Append("\t" + c + "\n");
 #endif
                             }
                         }
                         else if (c.Answer == currCell.Answer)
                         {
-                            ++currCellNewConflicts;
+                            ++swapCellNewConflicts;
                             ++c.NumberOfConflicts;
 
 #if DEBUG
@@ -257,7 +257,7 @@ namespace Sudoku.Model.Generator
                                 this._conflicts.Add(c);
 
 #if DEBUG
-                                insertedCells.Append("\t" + c + " " + this._conflicts.Contains(c).ToString() + "\n");
+                                insertedCells.Append("\t" + c + "\n");
 #endif
                             }
                         }
@@ -283,7 +283,7 @@ namespace Sudoku.Model.Generator
                         this._conflicts.Remove(currCell.Row, currCell.Col);
 
 #if DEBUG
-                        removedCells.Append("\t" + currCell + " " + this._conflicts.Contains(currCell).ToString() + "\n");
+                        removedCells.Append("\t" + currCell + "\n");
 #endif
                     }
 
@@ -298,7 +298,7 @@ namespace Sudoku.Model.Generator
                         this._conflicts.Remove(swapDestinationCell.Row, swapDestinationCell.Col);
 
 #if DEBUG
-                        removedCells.Append("\t" + swapDestinationCell + " " + this._conflicts.Contains(swapDestinationCell).ToString() + "\n");
+                        removedCells.Append("\t" + swapDestinationCell + "\n");
 #endif
                     }
 

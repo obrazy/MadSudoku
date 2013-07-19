@@ -96,7 +96,8 @@ namespace Sudoku.Model.Util
         /// <returns></returns>
         public static IList<Cell> GetSquareHouse(int row, int col, SudokuGrid s)
         {
-            return GetSquareHouse((row / 3) * 3 + (col / 3), s);
+            int squareNumber = (row / 3) * 3 + (col / 3);
+            return GetSquareHouse(squareNumber, s);
         }
 
         /// <summary>

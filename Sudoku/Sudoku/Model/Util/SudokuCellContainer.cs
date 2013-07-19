@@ -100,6 +100,9 @@ namespace Sudoku.Model.Util
                         var movedCellKey = Tuple.Create(movedCell.Row, movedCell.Col);
                         this._dict[movedCellKey] = removedIndex;
                     }
+                    else
+                    {
+                    }
 
                     this._list.RemoveAt(lastListIndex);
                     this._dict.Remove(key);
@@ -134,22 +137,6 @@ namespace Sudoku.Model.Util
         public bool IsEmpty()
         {
             return this._list.Count == 0;
-        }
-
-        public bool Contains(Cell c)
-        {
-            var key = Tuple.Create(c.Row, c.Col);
-            bool dictContains = this._dict.ContainsKey(key);
-            bool listContains = this._list.Contains(c);
-
-            if (dictContains != listContains)
-            {
-                throw new Exception("ERROR SHIT");
-            }
-            else
-            {
-                return dictContains;
-            }            
         }
 
         #endregion
