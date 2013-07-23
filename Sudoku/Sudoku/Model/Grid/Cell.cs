@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Sudoku.Model.Grid
 {
@@ -35,12 +32,12 @@ namespace Sudoku.Model.Grid
         /// <summary>
         /// Whether the user can change the value of this cell. In other words, whether this cell's value is part of the initial puzzle.
         /// </summary>
-        public Boolean IsModifiable { get; set; }
+        public bool IsModifiable { get; set; }
 
         /// <summary>
         /// Whether the user has set a digit for this cell.
         /// </summary>
-        public Boolean IsSet { get; set; }
+        public bool IsSet { get; set; }
 
         /// <summary>
         /// The number of conflicting visible cells seen by this cell.
@@ -52,7 +49,7 @@ namespace Sudoku.Model.Grid
         #region Constructors
 
         /// <summary>
-        /// Base constructor that sets default values.
+        /// Base constructor.
         /// </summary>
         public Cell()
         {
@@ -63,7 +60,7 @@ namespace Sudoku.Model.Grid
         }
 
         /// <summary>
-        /// Constructor that sets this Cell's Row and Column properties with specified values.
+        /// Constructor that sets this Cell's Row and Column properties to specified values.
         /// </summary>
         /// <param name="row"></param>
         /// <param name="col"></param>

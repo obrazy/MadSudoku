@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Sudoku.Model.Grid
+﻿namespace Sudoku.Model.Grid
 {
     /// <summary>
     /// Model class responsible for logic associated with the Sudoku puzzle's grid.
     /// </summary>
     public class SudokuGrid
     {
-        #region temp
-
-        public int NIterations { get; set; }
-
-        #endregion
-
         #region Properties
 
         /// <summary>

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Sudoku.Model;
 using Sudoku.Model.Grid;
-using Sudoku.Model;
 
 namespace Sudoku.ViewModel
 {
@@ -73,7 +69,7 @@ namespace Sudoku.ViewModel
         /// <summary>
         /// Whether the user can change the value of this cell. In other words, whether this cell's value is part of the initial puzzle.
         /// </summary>
-        public Boolean IsModifiable
+        public bool IsModifiable
         {
             get
             {
@@ -84,7 +80,7 @@ namespace Sudoku.ViewModel
         /// <summary>
         /// Whether the user has set a digit for this cell.
         /// </summary>
-        public Boolean IsSet
+        public bool IsSet
         {
             get
             {

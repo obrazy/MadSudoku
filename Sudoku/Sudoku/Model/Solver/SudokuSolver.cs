@@ -10,5 +10,20 @@ namespace Sudoku.Model.Solver
     /// </summary>
     public class SudokuSolver
     {
+        #region Properties
+
+        #endregion
+
+        #region Constructors
+
+        #endregion
+
+        #region Methods
+
+        public void Solve()
+        {
+        }
+
+        #endregion
     }
 }

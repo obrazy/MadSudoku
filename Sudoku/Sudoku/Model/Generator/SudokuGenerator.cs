@@ -1,4 +1,8 @@
 ﻿//#define DEBUG
+#undef DEBUG
+#define TIMING
+//#undef TIMING
+
 
 using System;
 using System.Collections.Generic;
@@ -8,7 +12,6 @@ using Sudoku.Model.Grid;
 using Sudoku.Enums;
 using Sudoku.Model.Util;
 using System.Collections;
-using System.Diagnostics;
 
 namespace Sudoku.Model.Generator
 {
@@ -53,11 +56,21 @@ namespace Sudoku.Model.Generator
         /// <returns></returns>
         public SudokuGrid GenerateNewPuzzle(GameDifficultyEnum diff)
         {
+#if TIMING
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
+#endif
+
             SudokuGrid newPuzzle = new SudokuGrid();
 
             FillOneToNine(newPuzzle);
             InitializeConflicts(newPuzzle);
             MinConflicts(newPuzzle);
+
+#if TIMING
+            sw.Stop();
+            System.Console.Write("\nGenerated in " + sw.ElapsedMilliseconds + " milliseconds\n\n");
+#endif
 
             return newPuzzle;
         }
@@ -114,9 +127,9 @@ namespace Sudoku.Model.Generator
             StringBuilder debugMessage;
             StringBuilder removedCells;
             StringBuilder insertedCells;
+            int nIterations = 0;
 #endif
 
-            int nIterations = 0;
             while (!this._conflicts.IsEmpty())
             {
                 Cell currCell = this._conflicts.GetRandomCell();
@@ -302,29 +315,27 @@ namespace Sudoku.Model.Generator
 #endif
                     }
 
+#if DEBUG
                     debugMessage.Append(removedCells.ToString() + "\n");
                     debugMessage.Append(insertedCells.ToString() + "\n\n");
+#endif
                 }
 #if DEBUG
                 else
                 {
                     debugMessage.Append("No swap found for this iteration\n\n");
                 }
-#endif
 
-                ++nIterations;
-
-#if DEBUG
                 debugMessage.Append("Final Grid:\n\n" + newPuzzle);
-                Debug.Write(debugMessage.ToString());
+                System.Diagnostics.Debug.Write(debugMessage.ToString());
 
-                if (nIterations > 100)
+                if (nIterations > 150)
                 {
                 }
+
+                ++nIterations;
 #endif
             }
-
-            newPuzzle.NIterations = nIterations;
         }
 
         #endregion

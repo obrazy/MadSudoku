@@ -77,10 +77,5 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Label
-            Grid.Row="2"
-            Content="{Binding Path=NIterations}"
-            HorizontalAlignment="Center"
-            Margin="5" />
     </Grid>
 </UserControl>

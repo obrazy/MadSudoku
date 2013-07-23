@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Sudoku.Enums;
+using Sudoku.Model.Generator;
 using Sudoku.Model.Grid;
 using Sudoku.Model.Solver;
-using Sudoku.Model.Generator;
-using Sudoku.Enums;
-using Sudoku.Model.Util;
 
 namespace Sudoku.Model
 {

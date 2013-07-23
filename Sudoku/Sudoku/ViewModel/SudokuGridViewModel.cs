@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Sudoku.Model.Grid;
-using Sudoku.Model;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Sudoku.Enums;
-using System.Collections.ObjectModel;
+using Sudoku.Model;
 using Sudoku.Model.Util;
 
 namespace Sudoku.ViewModel
